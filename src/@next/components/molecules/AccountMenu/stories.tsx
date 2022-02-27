@@ -1,10 +1,9 @@
 import { storiesOf } from "@storybook/react";
+import { styled } from "@styles";
 import React from "react";
 import { IntlProvider } from "react-intl";
 
-import { paths } from "@paths";
-import { styled } from "@styles";
-
+import { MemoryRouter } from "react-router";
 import { AccountMenu } from ".";
 
 const Wrapper = styled.div`
@@ -12,16 +11,21 @@ const Wrapper = styled.div`
 `;
 
 const links = [
-  paths.account,
-  paths.accountOrderHistory,
-  paths.accountAddressBook,
+  "/personal-information/",
+  "/address-book/",
+  "/order-history/",
+  "/payment-options/",
 ];
-const active = paths.accountAddressBook;
+const active = "/address-book/";
 
 const DEFAULT_PROPS = { ...{ links, active } };
 storiesOf("@components/molecules/AccountMenu", module)
   .addParameters({ component: AccountMenu })
-  .addDecorator(story => <IntlProvider locale="en">{story()}</IntlProvider>)
+  .addDecorator(story => (
+    <IntlProvider locale="en">
+      <MemoryRouter initialEntries={["/"]}>{story()}</MemoryRouter>
+    </IntlProvider>
+  ))
   .add("default", () => (
     <Wrapper>
       <AccountMenu {...DEFAULT_PROPS} />

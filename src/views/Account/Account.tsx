@@ -1,35 +1,37 @@
-import { useAuth } from "@saleor/sdk";
-import { NextPage } from "next";
-import { useRouter } from "next/router";
-import React from "react";
+import * as React from "react";
 import { useIntl } from "react-intl";
 import Media from "react-responsive";
+import { RouteComponentProps, withRouter } from "react-router";
+import { commonMessages } from "@temp/intl";
+import { useAuth } from "@saleor/sdk";
 
-import { Redirect } from "@components/atoms";
+import { smallScreen } from "@styles/constants";
 import { AccountMenu, AccountMenuMobile } from "@components/molecules";
 import { AccountTab, OrdersHistory } from "@pages";
-import { paths } from "@paths";
-import { smallScreen } from "@styles/constants";
-import { commonMessages } from "@temp/intl";
-
 import AddressBook from "../../account/AddressBook/AddressBook";
+import {
+  accountUrl,
+  addressBookUrl,
+  baseUrl,
+  orderHistoryUrl,
+} from "../../app/routes";
 import { Breadcrumbs, Loader } from "../../components";
 
 import "./scss/index.scss";
 
-const returnTab: any = (path: string, userDetails) => {
+const returnTab: any = (path: string, userDetails, history) => {
   let tabContent = <></>;
   switch (path) {
-    case paths.account: {
+    case accountUrl: {
       tabContent = <AccountTab />;
       break;
     }
-    case paths.accountAddressBook: {
+    case addressBookUrl: {
       tabContent = <AddressBook user={userDetails} />;
       break;
     }
-    case paths.accountOrderHistory: {
-      tabContent = <OrdersHistory />;
+    case orderHistoryUrl: {
+      tabContent = <OrdersHistory {...{ history }} />;
       break;
     }
     default:
@@ -39,25 +41,26 @@ const returnTab: any = (path: string, userDetails) => {
   return tabContent;
 };
 
-export const AccountView: NextPage = () => {
+const Account: React.FC<RouteComponentProps> = ({ history, match }) => {
   const intl = useIntl();
   const { user, loaded } = useAuth();
-  const { asPath, pathname } = useRouter();
-  const links = [
-    paths.account,
-    paths.accountOrderHistory,
-    paths.accountAddressBook,
-  ];
+
+  const links = [accountUrl, orderHistoryUrl, addressBookUrl];
+
+  if (!loaded) {
+    return <Loader />;
+  }
 
   if (!user) {
-    return <Redirect url={paths.home} />;
+    history.push(baseUrl);
   }
-  return loaded ? (
+
+  return (
     <div className="container">
       <Breadcrumbs
         breadcrumbs={[
           {
-            link: asPath,
+            link: match.path,
             value: intl.formatMessage(commonMessages.myAccount),
           },
         ]}
@@ -65,20 +68,20 @@ export const AccountView: NextPage = () => {
       <div className="account">
         <Media minWidth={smallScreen}>
           <div className="account__menu">
-            <AccountMenu links={links} active={pathname} />
+            <AccountMenu links={links} active={match.path} />
           </div>
         </Media>
         <Media maxWidth={smallScreen - 1}>
           <div className="account__menu_mobile">
-            <AccountMenuMobile links={links} active={pathname} />
+            <AccountMenuMobile links={links} active={match.path} />
           </div>
         </Media>
         <div className="account__content">
-          {user && returnTab(pathname, user)}
+          {user && returnTab(match.path, user, history)}
         </div>
       </div>
     </div>
-  ) : (
-    <Loader />
   );
 };
+
+export default withRouter(Account);

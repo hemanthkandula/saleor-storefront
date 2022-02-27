@@ -31,7 +31,7 @@ storiesOf("@components/molecules/CardHeader", module)
     };
     return renderHeader(PROPS);
   })
-  .add("with custom close icon", () => {
+  .add("with custom icon", () => {
     const icon = (
       <IconButton
         testingContext="test"
@@ -40,19 +40,7 @@ storiesOf("@components/molecules/CardHeader", module)
         onClick={action("edit")}
       />
     );
-    const PROPS = { ...DEFAULT_PROPS, closeIcon: icon };
-    return renderHeader(PROPS);
-  })
-  .add("with prefix", () => {
-    const icon = (
-      <IconButton
-        testingContext="test"
-        name="arrow_back"
-        size={24}
-        onClick={action("onArrowBack")}
-      />
-    );
-    const PROPS = { ...DEFAULT_PROPS, prfix: icon };
+    const PROPS = { ...DEFAULT_PROPS, customIcon: icon };
     return renderHeader(PROPS);
   })
   .add("with paragraph text style", () => {
@@ -61,7 +49,7 @@ storiesOf("@components/molecules/CardHeader", module)
     return renderHeader(PROPS);
   })
   .add("with big text size", () => {
-    const closeIcon = (
+    const customIcon = (
       <IconButton
         testingContext="test"
         name="trash"
@@ -70,6 +58,6 @@ storiesOf("@components/molecules/CardHeader", module)
       />
     );
     const titleSize: TitleSize = "lg";
-    const PROPS = { ...DEFAULT_PROPS, closeIcon, divider: true, titleSize };
+    const PROPS = { ...DEFAULT_PROPS, customIcon, divider: true, titleSize };
     return renderHeader(PROPS);
   });

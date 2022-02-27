@@ -1,8 +1,8 @@
-import Link from "next/link";
 import React from "react";
-import { IntlShape, useIntl } from "react-intl";
-
+import { useIntl, IntlShape } from "react-intl";
+import { Link } from "react-router-dom";
 import { checkoutMessages } from "@temp/intl";
+
 import { ICheckoutStep } from "@types";
 
 import * as S from "./styles";
@@ -78,11 +78,9 @@ const generateSteps = (
     }
     return (
       <S.Step key={step.index}>
-        <Link href={step.link}>
-          <a>
-            {generateDot(index, currentActive)}
-            {generateLabel(index, name, steps.length)}
-          </a>
+        <Link to={step.link}>
+          {generateDot(index, currentActive)}
+          {generateLabel(index, name, steps.length)}
         </Link>
         {generateProgressBar(index, currentActive, steps.length)}
       </S.Step>

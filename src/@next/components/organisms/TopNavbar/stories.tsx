@@ -1,5 +1,6 @@
 import { storiesOf } from "@storybook/react";
 import React from "react";
+import { BrowserRouter } from "react-router-dom";
 
 import { TopNavbar } from ".";
 
@@ -11,7 +12,6 @@ const items = [
     category: {
       id: "Q2F0ZWdvcnk6Nw==",
       name: "Accessories",
-      slug: "accessories",
       __typename: "Category",
     },
     url: null,
@@ -26,7 +26,6 @@ const items = [
         category: {
           id: "Q2F0ZWdvcnk6Nw==",
           name: "Accessories",
-          slug: "accessories",
           __typename: "Category",
         },
         url: null,
@@ -38,11 +37,9 @@ const items = [
           {
             id: "TWVudUl0ZW01Mjcx",
             name: "Subsubcategory I",
-            slug: "subsubcategoryi",
             category: {
               id: "Q2F0ZWdvcnk6Nw==",
               name: "Accessories",
-              slug: "accessories",
               __typename: "Category",
             },
           },
@@ -51,11 +48,9 @@ const items = [
       {
         id: "TWVudUl0ZW01Mjcx",
         name: "Subcategory II",
-        slug: "subcategoryii",
         category: {
           id: "Q2F0ZWdvcnk6Nw==",
           name: "Accessories",
-          slug: "accessories",
           __typename: "Category",
         },
         url: null,
@@ -73,7 +68,6 @@ const items = [
     category: {
       id: "Q2F0ZWdvcnk6OA==",
       name: "Groceries",
-      slug: "groceries",
       __typename: "Category",
     },
     url: null,
@@ -89,7 +83,6 @@ const items = [
     category: {
       id: "Q2F0ZWdvcnk6OQ==",
       name: "Apparel",
-      slug: "apparel",
       __typename: "Category",
     },
     url: null,
@@ -103,4 +96,8 @@ const items = [
 
 storiesOf("@components/organisms/TopNavbar", module)
   .addParameters({ component: TopNavbar })
-  .add("default", () => <TopNavbar items={items} />);
+  .add("default", () => (
+    <BrowserRouter>
+      <TopNavbar items={items} />
+    </BrowserRouter>
+  ));

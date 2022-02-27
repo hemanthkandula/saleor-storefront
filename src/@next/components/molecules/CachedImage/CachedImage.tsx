@@ -2,9 +2,9 @@ import React from "react";
 
 import { PlaceholderImage } from "@components/atoms";
 import { useNetworkStatus } from "@hooks";
-import { IImage } from "@types";
-
 import NoPhoto from "images/no-photo.svg";
+
+import { IImage } from "@types";
 
 export const CachedImage: React.FC<IImage> = ({
   url,

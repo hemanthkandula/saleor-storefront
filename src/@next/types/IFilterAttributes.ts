@@ -1,13 +1,13 @@
-import {
-  Attribute,
-  Attribute_choices_edges_node,
-} from "@graphql/gqlTypes/Attribute";
-import { NonNullableType } from "@utils/tsUtils";
-
-export type IFilterAttribute = {
+export interface ISingleFilterAttribute {
+  id: string;
+  name: string;
+  slug: string;
   selected?: boolean;
-} & NonNullableType<Attribute_choices_edges_node>;
+}
 
-export type IFilterAttributes = {
-  values: IFilterAttribute[];
-} & NonNullableType<Attribute>;
+export interface IFilterAttributes {
+  id: string;
+  name: string;
+  slug: string;
+  values: ISingleFilterAttribute[];
+}

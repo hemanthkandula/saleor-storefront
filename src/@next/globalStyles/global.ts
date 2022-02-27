@@ -1,5 +1,4 @@
 import { createGlobalStyle } from "styled-components";
-
 import { DefaultTheme, media } from ".";
 
 export const GlobalStyle = createGlobalStyle<{ theme: DefaultTheme }>`
@@ -64,8 +63,7 @@ export const GlobalStyle = createGlobalStyle<{ theme: DefaultTheme }>`
     list-style: none;
   }
 
-  #root,
-  #__next {
+  #root {
     display: flex;
     min-height: 100vh;
     flex-direction: column;

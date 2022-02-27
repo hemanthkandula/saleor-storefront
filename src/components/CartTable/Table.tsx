@@ -1,14 +1,13 @@
 import * as React from "react";
 import { FormattedMessage, useIntl } from "react-intl";
 import Media from "react-media";
-
 import { commonMessages } from "@temp/intl";
 
 import CostRow from "./CostRow";
 import ProductRow, { EditableProductRowProps, ILine } from "./ProductRow";
 
-import "./scss/index.scss";
 import { smallScreen } from "../../globalStyles/scss/variables.scss";
+import "./scss/index.scss";
 
 interface TableProps extends EditableProductRowProps {
   lines: ILine[];

@@ -1,5 +1,5 @@
-import { action } from "@storybook/addon-actions";
 import { storiesOf } from "@storybook/react";
+import { action } from "@storybook/addon-actions";
 import React from "react";
 import { IntlProvider } from "react-intl";
 
@@ -33,7 +33,7 @@ const PROPS = {
   ],
 };
 const processPayment = action("processPayment");
-const submitPayment = async () => Promise.resolve({});
+const submitPayment = async () => action("submitPayment");
 const submitPaymentSuccess = action("submitPaymentSuccess");
 const onError = action("onError");
 

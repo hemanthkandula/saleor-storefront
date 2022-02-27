@@ -1,10 +1,9 @@
-import "jest-styled-components";
-
 import { shallow } from "enzyme";
+import "jest-styled-components";
 import React from "react";
 
-import { Title } from "../Message/styles";
 import { NotificationTemplate } from ".";
+import { Title } from "../Message/styles";
 
 describe("<NotificationTemplate />", () => {
   it("renders passed title", () => {

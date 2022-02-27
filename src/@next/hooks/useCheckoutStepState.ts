@@ -1,11 +1,9 @@
-import { IItems, ITotalPrice } from "@saleor/sdk/lib/api/Cart/types";
-import { ICheckout, IPayment } from "@saleor/sdk/lib/api/Checkout/types";
 import { useEffect, useState } from "react";
 
-import {
-  checkIfShippingRequiredForProducts,
-  CheckoutStep,
-} from "@pages/CheckoutPage/utils";
+import { IItems, ITotalPrice } from "@saleor/sdk/lib/api/Cart/types";
+import { ICheckout, IPayment } from "@saleor/sdk/lib/api/Checkout/types";
+import { CheckoutStep } from "@temp/core/config";
+import { checkIfShippingRequiredForProducts } from "@utils/core";
 import { isPriceEqual } from "@utils/money";
 
 interface StepState {

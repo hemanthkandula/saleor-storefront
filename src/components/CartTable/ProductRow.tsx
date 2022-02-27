@@ -1,17 +1,17 @@
-import { ProductVariant } from "@saleor/sdk/lib/fragments/gqlTypes/ProductVariant";
-import { OrderByToken_orderByToken_lines_unitPrice } from "@saleor/sdk/lib/queries/gqlTypes/OrderByToken";
 import classNames from "classnames";
-import Link from "next/link";
 import * as React from "react";
-import { generatePath } from "react-router";
+import { Link } from "react-router-dom";
 
 import { TaxedMoney } from "@components/containers";
 import { Thumbnail } from "@components/molecules";
-import { paths } from "@paths";
+import { ProductVariant } from "@saleor/sdk/lib/fragments/gqlTypes/ProductVariant";
+import { OrderByToken_orderByToken_lines_unitPrice } from "@saleor/sdk/lib/queries/gqlTypes/OrderByToken";
+
+import { generateProductUrl } from "../../core/utils";
 
 export type ILine = Omit<
   ProductVariant,
-  "__typename" | "sku" | "quantityAvailable"
+  "__typename" | "sku" | "quantityAvailable" | "isAvailable"
 > & {
   quantity: number;
   totalPrice: OrderByToken_orderByToken_lines_unitPrice;
@@ -32,7 +32,7 @@ const ProductRow: React.FC<ReadProductRowProps & EditableProductRowProps> = ({
   processing,
   line,
 }) => {
-  const productUrl = generatePath(paths.product, { slug: line.product.slug });
+  const productUrl = generateProductUrl(line.product.id, line.product.name);
 
   return (
     <tr
@@ -43,15 +43,11 @@ const ProductRow: React.FC<ReadProductRowProps & EditableProductRowProps> = ({
       <td className="cart-table__thumbnail">
         <div>
           {mediumScreen && (
-            <Link href={productUrl}>
-              <a>
-                <Thumbnail source={line.product} />
-              </a>
+            <Link to={productUrl}>
+              <Thumbnail source={line.product} />
             </Link>
           )}
-          <Link href={productUrl}>
-            <a>{line.product.name}</a>
-          </Link>
+          <Link to={productUrl}>{line.product.name}</Link>
         </div>
       </td>
 

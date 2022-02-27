@@ -1,7 +1,6 @@
 /* eslint-disable no-console */
 import { existsSync } from "fs";
 import path from "path";
-
 import {
   getCategories,
   getCollections,

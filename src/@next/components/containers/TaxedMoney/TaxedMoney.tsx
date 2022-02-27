@@ -1,8 +1,9 @@
 import React from "react";
 
-import { ShopContext } from "../../../../components/ShopProvider/context";
 import { Money } from "../Money";
 import { IProps } from "./types";
+
+import { ShopContext } from "../../../../components/ShopProvider/context";
 
 export const TaxedMoney: React.FC<IProps> = ({
   taxedMoney,

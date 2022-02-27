@@ -6,7 +6,7 @@ exports[`Storyshots @components/organisms/Modal Modal Form 1`] = `
   margin: 20px;
 }
 
-.c13 {
+.c12 {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -17,7 +17,7 @@ exports[`Storyshots @components/organisms/Modal Modal Form 1`] = `
   box-sizing: border-box;
 }
 
-.c11 {
+.c10 {
   background-color: #13bebb;
   padding: 0.1rem 2rem;
   border: none;
@@ -29,26 +29,26 @@ exports[`Storyshots @components/organisms/Modal Modal Form 1`] = `
   width: auto;
 }
 
-.c11:hover {
+.c10:hover {
   background-color: #06a09e;
   color: #fff;
 }
 
-.c11:active {
+.c10:active {
   background-color: #06a09e;
   box-shadow: -3px 3px 14px 0px rgba(129,67,67,0.2);
 }
 
-.c11:disabled {
+.c10:disabled {
   background-color: #7d7d7d;
 }
 
-.c11:disabled,
-.c11:disabled:hover {
+.c10:disabled,
+.c10:disabled:hover {
   cursor: default;
 }
 
-.c12 {
+.c11 {
   display: inline-block;
   font-size: 1rem;
   text-transform: uppercase;
@@ -56,7 +56,7 @@ exports[`Storyshots @components/organisms/Modal Modal Form 1`] = `
   line-height: 1.25rem;
 }
 
-.c10 {
+.c9 {
   font-size: 1rem;
   font-weight: 600;
   color: rgb(33,18,94);
@@ -75,11 +75,11 @@ exports[`Storyshots @components/organisms/Modal Modal Form 1`] = `
   transition: color 0.3s ease;
 }
 
-.c10:hover {
+.c9:hover {
   color: #513CA3;
 }
 
-.c7 {
+.c6 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -104,20 +104,20 @@ exports[`Storyshots @components/organisms/Modal Modal Form 1`] = `
   transition: 0.3s;
 }
 
-.c7 svg {
+.c6 svg {
   display: block;
 }
 
-.c7 svg path {
+.c6 svg path {
   -webkit-transition: 0.3s;
   transition: 0.3s;
 }
 
-.c7:hover {
+.c6:hover {
   background-color: rgb(33,18,94);
 }
 
-.c7:hover svg path {
+.c6:hover svg path {
   fill: #fff;
 }
 
@@ -139,18 +139,6 @@ exports[`Storyshots @components/organisms/Modal Modal Form 1`] = `
 }
 
 .c5 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  gap: 1.875rem;
-}
-
-.c6 {
   font-size: 1rem;
   font-weight: 600;
   color: #323232;
@@ -159,14 +147,14 @@ exports[`Storyshots @components/organisms/Modal Modal Form 1`] = `
   margin: 0;
 }
 
-.c9 {
+.c8 {
   position: relative;
   text-align: right;
   padding: 1.1rem 1.875rem;
   border-top: 1px solid #f1f5f5;
 }
 
-.c9 button:last-child {
+.c8 button:last-child {
   margin-left: 2rem;
   margin-right: 0.7rem;
 }
@@ -226,12 +214,12 @@ exports[`Storyshots @components/organisms/Modal Modal Form 1`] = `
   width: 100%;
 }
 
-.c8 {
+.c7 {
   padding: 4rem 1.875rem 1.8rem 1.875rem;
 }
 
 @media (max-width:540px) {
-  .c11 {
+  .c10 {
     padding: 0.9rem 1rem;
     width: 88%;
   }
@@ -257,18 +245,14 @@ exports[`Storyshots @components/organisms/Modal Modal Form 1`] = `
         <div
           className="c4"
         >
-          <div
+          <h4
             className="c5"
+            size="md"
           >
-            <h4
-              className="c6"
-              size="md"
-            >
-              Modal title
-            </h4>
-          </div>
+            Modal title
+          </h4>
           <div
-            className="c7"
+            className="c6"
             data-test="closeOverlayButton"
             onClick={[Function]}
           >
@@ -285,17 +269,17 @@ exports[`Storyshots @components/organisms/Modal Modal Form 1`] = `
           </div>
         </div>
         <div
-          className="c8"
+          className="c7"
         >
           <div>
             Content
           </div>
         </div>
         <div
-          className="c9"
+          className="c8"
         >
           <button
-            className="c10"
+            className="c9"
             color="secondary"
             data-test="cancelButton"
             onClick={[Function]}
@@ -305,7 +289,7 @@ exports[`Storyshots @components/organisms/Modal Modal Form 1`] = `
             Cancel
           </button>
           <button
-            className="c11"
+            className="c10"
             color="primary"
             data-test="submitTestModalButton"
             disabled={false}
@@ -314,7 +298,7 @@ exports[`Storyshots @components/organisms/Modal Modal Form 1`] = `
             type="submit"
           >
             <span
-              className="c12"
+              className="c11"
               size="sm"
             >
               Save
@@ -325,7 +309,7 @@ exports[`Storyshots @components/organisms/Modal Modal Form 1`] = `
     </div>
   </div>
   <div
-    className="c13"
+    className="c12"
   />
 </div>
 `;
@@ -336,7 +320,7 @@ exports[`Storyshots @components/organisms/Modal Modal Form disabled 1`] = `
   margin: 20px;
 }
 
-.c12 {
+.c11 {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -347,7 +331,7 @@ exports[`Storyshots @components/organisms/Modal Modal Form disabled 1`] = `
   box-sizing: border-box;
 }
 
-.c10 {
+.c9 {
   background-color: #13bebb;
   padding: 0.1rem 2rem;
   border: none;
@@ -359,26 +343,26 @@ exports[`Storyshots @components/organisms/Modal Modal Form disabled 1`] = `
   width: auto;
 }
 
-.c10:hover {
+.c9:hover {
   background-color: #06a09e;
   color: #fff;
 }
 
-.c10:active {
+.c9:active {
   background-color: #06a09e;
   box-shadow: -3px 3px 14px 0px rgba(129,67,67,0.2);
 }
 
-.c10:disabled {
+.c9:disabled {
   background-color: #7d7d7d;
 }
 
-.c10:disabled,
-.c10:disabled:hover {
+.c9:disabled,
+.c9:disabled:hover {
   cursor: default;
 }
 
-.c11 {
+.c10 {
   display: inline-block;
   font-size: 1rem;
   text-transform: uppercase;
@@ -386,7 +370,7 @@ exports[`Storyshots @components/organisms/Modal Modal Form disabled 1`] = `
   line-height: 1.25rem;
 }
 
-.c7 {
+.c6 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -411,20 +395,20 @@ exports[`Storyshots @components/organisms/Modal Modal Form disabled 1`] = `
   transition: 0.3s;
 }
 
-.c7 svg {
+.c6 svg {
   display: block;
 }
 
-.c7 svg path {
+.c6 svg path {
   -webkit-transition: 0.3s;
   transition: 0.3s;
 }
 
-.c7:hover {
+.c6:hover {
   background-color: rgb(33,18,94);
 }
 
-.c7:hover svg path {
+.c6:hover svg path {
   fill: #fff;
 }
 
@@ -446,18 +430,6 @@ exports[`Storyshots @components/organisms/Modal Modal Form disabled 1`] = `
 }
 
 .c5 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  gap: 1.875rem;
-}
-
-.c6 {
   font-size: 1rem;
   font-weight: 600;
   color: #323232;
@@ -466,14 +438,14 @@ exports[`Storyshots @components/organisms/Modal Modal Form disabled 1`] = `
   margin: 0;
 }
 
-.c9 {
+.c8 {
   position: relative;
   text-align: right;
   padding: 1.1rem 1.875rem;
   border-top: 1px solid #f1f5f5;
 }
 
-.c9 button:last-child {
+.c8 button:last-child {
   margin-left: 2rem;
   margin-right: 0.7rem;
 }
@@ -533,12 +505,12 @@ exports[`Storyshots @components/organisms/Modal Modal Form disabled 1`] = `
   width: 100%;
 }
 
-.c8 {
+.c7 {
   padding: 4rem 1.875rem 1.8rem 1.875rem;
 }
 
 @media (max-width:540px) {
-  .c10 {
+  .c9 {
     padding: 0.9rem 1rem;
     width: 88%;
   }
@@ -564,18 +536,14 @@ exports[`Storyshots @components/organisms/Modal Modal Form disabled 1`] = `
         <div
           className="c4"
         >
-          <div
+          <h4
             className="c5"
+            size="md"
           >
-            <h4
-              className="c6"
-              size="md"
-            >
-              Modal title
-            </h4>
-          </div>
+            Modal title
+          </h4>
           <div
-            className="c7"
+            className="c6"
             data-test="closeOverlayButton"
             onClick={[Function]}
           >
@@ -592,17 +560,17 @@ exports[`Storyshots @components/organisms/Modal Modal Form disabled 1`] = `
           </div>
         </div>
         <div
-          className="c8"
+          className="c7"
         >
           <div>
             Content
           </div>
         </div>
         <div
-          className="c9"
+          className="c8"
         >
           <button
-            className="c10"
+            className="c9"
             color="primary"
             data-test="submitTestModalButton"
             disabled={true}
@@ -611,7 +579,7 @@ exports[`Storyshots @components/organisms/Modal Modal Form disabled 1`] = `
             type="submit"
           >
             <span
-              className="c11"
+              className="c10"
               size="sm"
             >
               Loading
@@ -622,7 +590,7 @@ exports[`Storyshots @components/organisms/Modal Modal Form disabled 1`] = `
     </div>
   </div>
   <div
-    className="c12"
+    className="c11"
   />
 </div>
 `;
@@ -633,7 +601,7 @@ exports[`Storyshots @components/organisms/Modal Modal Info 1`] = `
   margin: 20px;
 }
 
-.c12 {
+.c11 {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -644,7 +612,7 @@ exports[`Storyshots @components/organisms/Modal Modal Info 1`] = `
   box-sizing: border-box;
 }
 
-.c10 {
+.c9 {
   background-color: #13bebb;
   padding: 0.1rem 2rem;
   border: none;
@@ -656,26 +624,26 @@ exports[`Storyshots @components/organisms/Modal Modal Info 1`] = `
   width: auto;
 }
 
-.c10:hover {
+.c9:hover {
   background-color: #06a09e;
   color: #fff;
 }
 
-.c10:active {
+.c9:active {
   background-color: #06a09e;
   box-shadow: -3px 3px 14px 0px rgba(129,67,67,0.2);
 }
 
-.c10:disabled {
+.c9:disabled {
   background-color: #7d7d7d;
 }
 
-.c10:disabled,
-.c10:disabled:hover {
+.c9:disabled,
+.c9:disabled:hover {
   cursor: default;
 }
 
-.c11 {
+.c10 {
   display: inline-block;
   font-size: 1rem;
   text-transform: uppercase;
@@ -683,7 +651,7 @@ exports[`Storyshots @components/organisms/Modal Modal Info 1`] = `
   line-height: 1.25rem;
 }
 
-.c7 {
+.c6 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -708,20 +676,20 @@ exports[`Storyshots @components/organisms/Modal Modal Info 1`] = `
   transition: 0.3s;
 }
 
-.c7 svg {
+.c6 svg {
   display: block;
 }
 
-.c7 svg path {
+.c6 svg path {
   -webkit-transition: 0.3s;
   transition: 0.3s;
 }
 
-.c7:hover {
+.c6:hover {
   background-color: rgb(33,18,94);
 }
 
-.c7:hover svg path {
+.c6:hover svg path {
   fill: #fff;
 }
 
@@ -743,18 +711,6 @@ exports[`Storyshots @components/organisms/Modal Modal Info 1`] = `
 }
 
 .c5 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  gap: 1.875rem;
-}
-
-.c6 {
   font-size: 1rem;
   font-weight: 600;
   color: #323232;
@@ -763,14 +719,14 @@ exports[`Storyshots @components/organisms/Modal Modal Info 1`] = `
   margin: 0;
 }
 
-.c9 {
+.c8 {
   position: relative;
   text-align: right;
   padding: 1.1rem 1.875rem;
   border-top: 1px solid #f1f5f5;
 }
 
-.c9 button:last-child {
+.c8 button:last-child {
   margin-left: 2rem;
   margin-right: 0.7rem;
 }
@@ -830,12 +786,12 @@ exports[`Storyshots @components/organisms/Modal Modal Info 1`] = `
   width: 100%;
 }
 
-.c8 {
+.c7 {
   padding: 4rem 1.875rem 1.8rem 1.875rem;
 }
 
 @media (max-width:540px) {
-  .c10 {
+  .c9 {
     padding: 0.9rem 1rem;
     width: 88%;
   }
@@ -861,18 +817,14 @@ exports[`Storyshots @components/organisms/Modal Modal Info 1`] = `
         <div
           className="c4"
         >
-          <div
+          <h4
             className="c5"
+            size="md"
           >
-            <h4
-              className="c6"
-              size="md"
-            >
-              Modal title
-            </h4>
-          </div>
+            Modal title
+          </h4>
           <div
-            className="c7"
+            className="c6"
             data-test="closeOverlayButton"
             onClick={[Function]}
           >
@@ -889,17 +841,17 @@ exports[`Storyshots @components/organisms/Modal Modal Info 1`] = `
           </div>
         </div>
         <div
-          className="c8"
+          className="c7"
         >
           <div>
             Content
           </div>
         </div>
         <div
-          className="c9"
+          className="c8"
         >
           <button
-            className="c10"
+            className="c9"
             color="primary"
             data-test="submitTestModalButton"
             disabled={false}
@@ -909,7 +861,7 @@ exports[`Storyshots @components/organisms/Modal Modal Info 1`] = `
             type="submit"
           >
             <span
-              className="c11"
+              className="c10"
               size="sm"
             >
               OK
@@ -920,7 +872,7 @@ exports[`Storyshots @components/organisms/Modal Modal Info 1`] = `
     </div>
   </div>
   <div
-    className="c12"
+    className="c11"
   />
 </div>
 `;

@@ -1,12 +1,12 @@
-import "jest-styled-components";
-
 import { shallow } from "enzyme";
+import "jest-styled-components";
 import React from "react";
 
 import { CachedImage } from "@components/molecules";
 
-import { ProductGallery } from ".";
 import { eightImages } from "./fixtures";
+
+import { ProductGallery } from ".";
 
 describe("<ProductGallery />", () => {
   it("exists", () => {

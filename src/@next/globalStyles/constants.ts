@@ -27,6 +27,7 @@ export const darkGreen = "#06847B";
 export const secondaryGrey = "#EBF1F6";
 export const secondaryGreyDark = "#9D9FB1";
 export const secondaryBlue = "#036DFF";
+export const lv_grey = "#9d9996"
 
 // theme colors
 export const theme = {
@@ -50,11 +51,11 @@ export const theme = {
   listAttributeName: baseFontColorSemiTransparent,
   listBullet: darkGreen,
   overlay: overlayColor,
-  primary: turquoise,
+  primary: lv_grey,
   primaryDark: turquoiseDark,
   primaryLight: turquoiseLight,
   primaryTransparent: turquoiseTransparent,
-  secondary: blue,
+  secondary: black,
   secondaryDark: blueDark,
   secondaryLight: blueLight,
   secondaryOverlay: blueOverlay,
@@ -65,6 +66,7 @@ export const theme = {
   tabsBorder: baseFontColorTransparent,
   thumbnailBorder: darkGreen,
   white,
+  lv_grey,
 };
 
 // typography

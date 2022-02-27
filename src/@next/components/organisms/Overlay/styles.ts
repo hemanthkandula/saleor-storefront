@@ -1,7 +1,5 @@
-import { css, keyframes } from "styled-components";
-
 import { styled } from "@styles";
-
+import { css, keyframes } from "styled-components";
 import { Position, TransitionState } from "./types";
 
 interface IStyleProps {

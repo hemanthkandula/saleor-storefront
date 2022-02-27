@@ -13,6 +13,7 @@ import {
   PaymentData,
 } from "../../../../core/payments/braintree";
 import { maybe, removeEmptySpaces } from "../../../../core/utils";
+
 import * as S from "./styles";
 import { IProps } from "./types";
 

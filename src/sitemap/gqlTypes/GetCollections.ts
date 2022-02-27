@@ -1,6 +1,5 @@
 /* tslint:disable */
 /* eslint-disable */
-// @generated
 // This file was automatically generated and should not be edited.
 
 // ====================================================
@@ -26,7 +25,6 @@ export interface GetCollections_collections_edges_node {
    */
   id: string;
   name: string;
-  slug: string;
 }
 
 export interface GetCollections_collections_edges {
@@ -56,5 +54,4 @@ export interface GetCollections {
 export interface GetCollectionsVariables {
   cursor?: string | null;
   perPage?: number | null;
-  channel?: string | null;
 }

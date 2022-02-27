@@ -1,1 +1,1 @@
-export * from "./CollectionView";
+export { View as CollectionPage } from "./View";

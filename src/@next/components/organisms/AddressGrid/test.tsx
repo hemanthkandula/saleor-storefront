@@ -1,6 +1,5 @@
-import "jest-styled-components";
-
 import { shallow } from "enzyme";
+import "jest-styled-components";
 import React from "react";
 
 import { AddNewTile, TileGrid } from "@components/atoms";

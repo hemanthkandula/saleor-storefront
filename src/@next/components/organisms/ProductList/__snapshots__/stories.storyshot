@@ -63,14 +63,7 @@ exports[`Storyshots @components/organisms/ProductList default 1`] = `
   background: #f1f5f5;
   padding: 2.5rem;
   text-align: center;
-  height: 26rem;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
+  max-height: 30rem;
   -webkit-transition: 0.3s;
   transition: 0.3s;
 }
@@ -94,23 +87,15 @@ exports[`Storyshots @components/organisms/ProductList default 1`] = `
 }
 
 .c5 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-flex: 1;
-  -webkit-flex-grow: 1;
-  -ms-flex-positive: 1;
-  flex-grow: 1;
-  overflow: hidden;
+  width: auto;
+  height: auto;
+  max-width: 100%;
 }
 
 .c5 > img {
-  -webkit-box-flex: 1;
-  -webkit-flex-grow: 1;
-  -ms-flex-positive: 1;
-  flex-grow: 1;
-  object-fit: contain;
+  width: auto;
+  height: auto;
+  max-width: 100%;
 }
 
 .c1 {
@@ -160,9 +145,8 @@ exports[`Storyshots @components/organisms/ProductList default 1`] = `
     data-test-id="testCategory"
   >
     <a
-      href="/product/apple-juice"
+      href="/product/apple-juice/72/"
       onClick={[Function]}
-      onMouseEnter={[Function]}
     >
       <div
         className="c2"
@@ -195,9 +179,8 @@ exports[`Storyshots @components/organisms/ProductList default 1`] = `
       </div>
     </a>
     <a
-      href="/product/apple-juice"
+      href="/product/apple-juice/72/"
       onClick={[Function]}
-      onMouseEnter={[Function]}
     >
       <div
         className="c2"
@@ -230,9 +213,8 @@ exports[`Storyshots @components/organisms/ProductList default 1`] = `
       </div>
     </a>
     <a
-      href="/product/apple-juice"
+      href="/product/apple-juice/72/"
       onClick={[Function]}
-      onMouseEnter={[Function]}
     >
       <div
         className="c2"
@@ -265,9 +247,8 @@ exports[`Storyshots @components/organisms/ProductList default 1`] = `
       </div>
     </a>
     <a
-      href="/product/apple-juice"
+      href="/product/apple-juice/72/"
       onClick={[Function]}
-      onMouseEnter={[Function]}
     >
       <div
         className="c2"
@@ -300,9 +281,8 @@ exports[`Storyshots @components/organisms/ProductList default 1`] = `
       </div>
     </a>
     <a
-      href="/product/apple-juice"
+      href="/product/apple-juice/72/"
       onClick={[Function]}
-      onMouseEnter={[Function]}
     >
       <div
         className="c2"
@@ -335,9 +315,8 @@ exports[`Storyshots @components/organisms/ProductList default 1`] = `
       </div>
     </a>
     <a
-      href="/product/apple-juice"
+      href="/product/apple-juice/72/"
       onClick={[Function]}
-      onMouseEnter={[Function]}
     >
       <div
         className="c2"

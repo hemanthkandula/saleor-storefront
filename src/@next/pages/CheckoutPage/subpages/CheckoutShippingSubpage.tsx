@@ -1,4 +1,3 @@
-import { useCheckout } from "@saleor/sdk";
 import React, {
   forwardRef,
   RefForwardingComponent,
@@ -6,20 +5,25 @@ import React, {
   useRef,
   useState,
 } from "react";
+import { RouteComponentProps } from "react-router";
 
 import { CheckoutShipping } from "@components/organisms";
+import { useCheckout } from "@saleor/sdk";
 import { IFormError } from "@types";
 
-import {
-  CheckoutStep,
-  SubpageBaseProps,
-  SubpageCompleteHandler,
-} from "../utils";
+export interface ICheckoutShippingSubpageHandles {
+  submitShipping: () => void;
+}
+
+interface IProps extends RouteComponentProps<any> {
+  changeSubmitProgress: (submitInProgress: boolean) => void;
+  onSubmitSuccess: () => void;
+}
 
 const CheckoutShippingSubpageWithRef: RefForwardingComponent<
-  SubpageCompleteHandler,
-  SubpageBaseProps
-> = ({ changeSubmitProgress, onSubmitSuccess }, ref) => {
+  ICheckoutShippingSubpageHandles,
+  IProps
+> = ({ changeSubmitProgress, onSubmitSuccess, ...props }: IProps, ref) => {
   const checkoutShippingFormId = "shipping-form";
   const checkoutShippingFormRef = useRef<HTMLFormElement>(null);
 
@@ -33,11 +37,13 @@ const CheckoutShippingSubpageWithRef: RefForwardingComponent<
 
   const shippingMethods = availableShippingMethods || [];
 
-  useImperativeHandle(ref, () => () => {
-    checkoutShippingFormRef.current?.dispatchEvent(
-      new Event("submit", { cancelable: true })
-    );
-  });
+  useImperativeHandle(ref, () => ({
+    submitShipping: () => {
+      checkoutShippingFormRef.current?.dispatchEvent(
+        new Event("submit", { cancelable: true })
+      );
+    },
+  }));
 
   const handleSetShippingMethod = async (shippingMethodId: string) => {
     changeSubmitProgress(true);
@@ -48,12 +54,13 @@ const CheckoutShippingSubpageWithRef: RefForwardingComponent<
       setErrors(errors);
     } else {
       setErrors([]);
-      onSubmitSuccess(CheckoutStep.Shipping);
+      onSubmitSuccess();
     }
   };
 
   return (
     <CheckoutShipping
+      {...props}
       shippingMethods={shippingMethods}
       selectedShippingMethodId={checkout?.shippingMethod?.id}
       errors={errors}

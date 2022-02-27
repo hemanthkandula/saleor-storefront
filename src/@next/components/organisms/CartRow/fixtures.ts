@@ -48,7 +48,6 @@ export const DEFAULT_PROPS = {
     },
   ],
   id: "UHJvZHVjdDoz",
-  slug: "slug",
   maxQuantity: 5,
   name: "The Great Square Table",
   quantity: 3,

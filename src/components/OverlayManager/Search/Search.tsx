@@ -1,29 +1,28 @@
+import "./scss/index.scss";
+
 import classNames from "classnames";
-import { NextRouter, withRouter } from "next/router";
 import { stringify } from "query-string";
 import * as React from "react";
 import {
-  FormattedMessage,
   injectIntl,
   WrappedComponentProps,
+  FormattedMessage,
 } from "react-intl";
+import { RouteComponentProps, withRouter } from "react-router-dom";
 import ReactSVG from "react-svg";
 
-import { OfflinePlaceholder } from "@components/atoms";
-import { paths } from "@paths";
-import { channelSlug } from "@temp/constants";
 import { commonMessages } from "@temp/intl";
 
-import { maybe } from "../../../core/utils";
-import searchImg from "../../../images/search.svg";
-import closeImg from "../../../images/x.svg";
 import {
   Button,
   Loader,
+  OfflinePlaceholder,
   Overlay,
   OverlayContextInterface,
   OverlayType,
 } from "../..";
+import { searchUrl } from "../../../app/routes";
+import { maybe } from "../../../core/utils";
 import { DebouncedTextField } from "../../Debounce";
 import { Error } from "../../Error";
 import NetworkStatus from "../../NetworkStatus";
@@ -32,11 +31,11 @@ import NothingFound from "./NothingFound";
 import ProductItem from "./ProductItem";
 import { TypedSearchResults } from "./queries";
 
-import "./scss/index.scss";
+import searchImg from "../../../images/search.svg";
+import closeImg from "../../../images/x.svg";
 
-interface SearchProps extends WrappedComponentProps {
+interface SearchProps extends WrappedComponentProps, RouteComponentProps {
   overlay: OverlayContextInterface;
-  router: NextRouter;
 }
 
 interface SearchState {
@@ -61,6 +60,10 @@ class Search extends React.Component<SearchProps, SearchState> {
     return this.state.search.length > 0;
   }
 
+  get redirectTo() {
+    return { pathname: searchUrl, search: `?${this.searchQs}` };
+  }
+
   get searchQs() {
     return stringify({ q: this.state.search });
   }
@@ -71,7 +74,7 @@ class Search extends React.Component<SearchProps, SearchState> {
   handleSubmit = (evt: React.FormEvent) => {
     if (this.hasSearchPhrase && this.submitBtnRef.current) {
       this.props.overlay.hide();
-      this.props.router.push(`${paths.search}?${this.searchQs}`);
+      this.props.history.push(`${searchUrl}?${this.searchQs}`);
     }
 
     evt.preventDefault();
@@ -128,10 +131,7 @@ class Search extends React.Component<SearchProps, SearchState> {
                       renderOnError
                       displayError={false}
                       errorPolicy="all"
-                      variables={{
-                        channel: channelSlug,
-                        query: this.state.search,
-                      }}
+                      variables={{ query: this.state.search }}
                     >
                       {({ data, error, loading }) => {
                         if (this.hasResults(data)) {
@@ -187,4 +187,11 @@ class Search extends React.Component<SearchProps, SearchState> {
 
 // Workaround ATM for:
 // withRouter(Search): Function components do not support contextType
-export default injectIntl(withRouter(Search));
+export default injectIntl(
+  withRouter(
+    (
+      props: WrappedComponentProps &
+        RouteComponentProps & { overlay: OverlayContextInterface }
+    ) => <Search {...props} />
+  )
+);

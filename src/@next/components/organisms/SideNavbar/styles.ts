@@ -1,8 +1,9 @@
+import { styled } from "@styles";
+import { Link as _Link } from "react-router-dom";
 import ReactSVG from "react-svg";
 import { css } from "styled-components";
 
 import { NavLink as _NavLink } from "@components/atoms";
-import { styled } from "@styles";
 
 import { NAVBAR_HEIGHT } from "../TopNavbar/styles";
 
@@ -78,7 +79,7 @@ export const NavLink = styled(_NavLink).attrs({
   ${MenuItemStyles};
 `;
 
-export const Link = styled.a`
+export const Link = styled(_Link)`
   ${MenuItemStyles};
 `;
 

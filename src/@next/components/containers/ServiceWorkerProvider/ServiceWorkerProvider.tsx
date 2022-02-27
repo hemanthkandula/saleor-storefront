@@ -2,7 +2,7 @@ import React from "react";
 
 import { useServiceWorker } from "@hooks";
 
-import { ServiceWorkerContext } from "./context";
+import { ServiceWorkerContext } from ".";
 import { IProps } from "./types";
 
 export const ServiceWorkerProvider: React.FC<IProps> = ({

@@ -1,9 +1,10 @@
 import React from "react";
 import { FormattedMessage } from "react-intl";
 
-import { Container } from "../Container";
 import * as S from "./styles";
 import { IProps } from "./types";
+
+import { Container } from "../Container";
 
 /**
  * Template for empty cart page.

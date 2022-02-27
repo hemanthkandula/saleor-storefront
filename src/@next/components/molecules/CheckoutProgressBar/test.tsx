@@ -1,8 +1,8 @@
-import "jest-styled-components";
-
 import { mount } from "enzyme";
+import "jest-styled-components";
 import React from "react";
 import { IntlProvider } from "react-intl";
+import { MemoryRouter } from "react-router-dom";
 
 import { CheckoutProgressBar } from ".";
 
@@ -28,7 +28,9 @@ describe("<CheckoutProgressBar />", () => {
   it("exists", () => {
     const wrapper = mount(
       <IntlProvider locale="en">
-        <CheckoutProgressBar steps={steps} activeStep={0} />
+        <MemoryRouter>
+          <CheckoutProgressBar steps={steps} activeStep={0} />
+        </MemoryRouter>
       </IntlProvider>
     );
 
@@ -38,7 +40,9 @@ describe("<CheckoutProgressBar />", () => {
   it("exists", () => {
     const wrapper = mount(
       <IntlProvider locale="en">
-        <CheckoutProgressBar steps={steps} activeStep={0} />
+        <MemoryRouter>
+          <CheckoutProgressBar steps={steps} activeStep={0} />
+        </MemoryRouter>
       </IntlProvider>
     );
 

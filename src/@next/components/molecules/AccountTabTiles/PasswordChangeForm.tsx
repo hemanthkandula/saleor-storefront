@@ -1,11 +1,10 @@
 import { Formik } from "formik";
 import React from "react";
-import { FormattedMessage, useIntl } from "react-intl";
+import { useIntl, FormattedMessage } from "react-intl";
 
 import { Button, ButtonLink } from "@components/atoms";
 import { commonMessages } from "@temp/intl";
 import { IFormError } from "@types";
-
 import { TextField } from "../TextField";
 import * as S from "./styles";
 

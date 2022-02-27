@@ -1,19 +1,19 @@
-import { useAuth, useOrdersByUser } from "@saleor/sdk/";
+import { useOrdersByUser } from "@saleor/sdk/";
 import React from "react";
 import { FormattedMessage } from "react-intl";
 
 import { Button, Loader } from "@components/atoms";
-import { OrderTable } from "@components/molecules";
+import { OrderTabel } from "@components/molecules";
 
 import * as S from "./styles";
+import { IProps } from "./types";
 
-const ORDERS_PER_API_CALL = 5;
+const ORDERS_PER_APICALL = 5;
 
-export const OrdersHistory: React.FC = () => {
-  const { user } = useAuth();
+export const OrdersHistory: React.FC<IProps> = ({ history }: IProps) => {
   const { data, loading, loadMore } = useOrdersByUser(
     {
-      perPage: ORDERS_PER_API_CALL,
+      perPage: ORDERS_PER_APICALL,
     },
     {
       fetchPolicy: "network-only",
@@ -24,7 +24,7 @@ export const OrdersHistory: React.FC = () => {
     <Loader />
   ) : (
     <>
-      <OrderTable orders={data?.edges.map(e => e.node) || []} isGuest={!user} />
+      <OrderTabel orders={data?.edges} history={history} />
       {data?.pageInfo.hasNextPage && (
         <S.Wrapper>
           <Button
@@ -32,7 +32,7 @@ export const OrdersHistory: React.FC = () => {
             onClick={() => {
               loadMore({
                 after: data!.pageInfo.endCursor,
-                perPage: ORDERS_PER_API_CALL,
+                perPage: ORDERS_PER_APICALL,
               });
             }}
           >

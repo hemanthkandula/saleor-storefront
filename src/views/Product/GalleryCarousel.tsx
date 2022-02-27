@@ -1,13 +1,14 @@
-import { ProductDetails_images } from "@saleor/sdk/lib/fragments/gqlTypes/ProductDetails";
 import * as React from "react";
 
 import { CachedImage } from "@components/molecules";
 
 import { Carousel } from "../../components";
+import { ProductDetails_product_images } from "./gqlTypes/ProductDetails";
+
 import noPhotoImg from "../../images/no-photo.svg";
 
 const GalleryCarousel: React.FC<{
-  images: ProductDetails_images[];
+  images: ProductDetails_product_images[];
 }> = ({ images }) => (
   <div className="product-page__product__gallery">
     <Carousel
@@ -37,7 +38,7 @@ const GalleryCarousel: React.FC<{
     >
       {images.map(image => (
         <CachedImage url={image.url || noPhotoImg} key={image.id}>
-          <img src={noPhotoImg} alt="#FIXME" />
+          <img src={noPhotoImg} alt={image.alt} />
         </CachedImage>
       ))}
     </Carousel>

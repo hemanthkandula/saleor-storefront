@@ -3,8 +3,8 @@
     "baseUrl": ".",
     "esModuleInterop": true,
     "module": "commonjs",
-    "jsx": "preserve",
-    "lib": ["es2017", "dom", "esnext", "webworker"],
+    "jsx": "react",
+    "lib": ["es2017", "dom", "esnext"],
     "sourceMap": true,
     "target": "es6",
     "noUnusedLocals": true,
@@ -15,9 +15,7 @@
       "@components/organisms": ["./src/@next/components/organisms/index.ts"],
       "@components/templates": ["./src/@next/components/templates/index.ts"],
       "@components/containers": ["./src/@next/components/containers/index.ts"],
-      "@paths": ["./src/paths.ts"],
       "@pages": ["./src/@next/pages/index.ts"],
-      "@pages/*": ["./src/@next/pages/*"],
       "@styles": ["./src/@next/globalStyles/index.ts"],
       "@styles/*": ["./src/@next/globalStyles/*"],
       "images/*": ["./src/images/*"],
@@ -26,21 +24,12 @@
       "@hooks/*": ["./src/@next/hooks/*"],
       "@types": ["./src/@next/types/index.ts"],
       "@types/*": ["./src/@next/types/*"],
-      "@graphql": ["./src/@next/graphql/index.ts"],
-      "@graphql/*": ["./src/@next/graphql/*"],
       "@app/*": ["./src/@next/*"],
       "@locale/*": ["./locale/*"],
       "@temp/*": ["./src/*"]
     },
     "resolveJsonModule": true,
-    "skipLibCheck": true,
-    "allowJs": true,
-    "strict": false,
-    "forceConsistentCasingInFileNames": true,
-    "noEmit": true,
-    "moduleResolution": "node",
-    "isolatedModules": true
+    "skipLibCheck": true
   },
-  "exclude": ["node_modules"],
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"]
+  "exclude": ["node_modules"]
 }

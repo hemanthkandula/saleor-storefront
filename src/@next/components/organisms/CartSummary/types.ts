@@ -23,6 +23,6 @@ export interface IProduct {
   thumbnail: IImage;
 }
 
-export interface CartSummaryProps extends ICosts {
+export interface IProps extends ICosts {
   products?: IProduct[];
 }

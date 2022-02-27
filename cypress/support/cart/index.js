@@ -11,7 +11,7 @@ const clearCart = () => {
       return cy
         .get(HEADER_SELECTORS.cartBtn)
         .click()
-        .get(PRODUCTS_SELECTORS.goToCartMyCartBtn)
+        .get(PRODUCTS_SELECTORS.goToBagMyBagBtn)
         .click()
         .get(CART_SELECTORS.deleteItemBtn)
         .click()

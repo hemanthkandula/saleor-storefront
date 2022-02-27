@@ -1,5 +1,4 @@
 import gql from "graphql-tag";
-
 import { TypedMutation } from "../../core/mutations";
 import {
   ResetPasswordRequest,
@@ -8,16 +7,8 @@ import {
 
 // fixme: this will be fixed in issue https://github.com/mirumee/saleor-storefront/issues/500
 const passwordResetRequestMutation = gql`
-  mutation ResetPasswordRequest(
-    $email: String!
-    $redirectUrl: String!
-    $channel: String
-  ) {
-    requestPasswordReset(
-      email: $email
-      redirectUrl: $redirectUrl
-      channel: $channel
-    ) {
+  mutation ResetPasswordRequest($email: String!, $redirectUrl: String!) {
+    requestPasswordReset(email: $email, redirectUrl: $redirectUrl) {
       errors {
         field
         message

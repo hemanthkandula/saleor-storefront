@@ -1,18 +1,23 @@
 @import "../../../globalStyles/scss/variables.scss";
 
-.header-with-dropdown {
-  z-index: 3;
-}
-
 .main-menu {
+
   align-items: center;
   align-items: stretch;
-  background-color: $white;
-  border-bottom: 1px solid $gray-light;
+  //border-bottom: 1px solid $gray-dark;
+  display: flex;
   display: flex;
   flex-direction: row;
   height: 3.55rem;
-  position: relative;
+  background: transparent;
+  width: 100%;
+  font-size: $smaller-font-size;
+  z-index: 999;
+
+
+
+  position: fixed;
+
 
   &__left {
     flex-basis: calc(50% - 2rem);
@@ -44,6 +49,7 @@
 
   &__center {
     align-self: center;
+    padding-top: 10px;
 
     svg {
       width: 4rem;
@@ -52,6 +58,15 @@
         width: 6rem;
       }
     }
+
+    &_reg {
+      font-family: CardinalFruitRegular, serif;
+      //font-weight: 900;
+      font-size: $h2-font-size;
+
+
+    }
+
   }
 
   &__item {
@@ -61,12 +76,12 @@
 
     a {
       text-decoration: none;
-      color: $base-font-color;
+      color: $white;
       position: relative;
       transition: 0.3s;
 
       &:hover {
-        color: $turquoise;
+        color: $lv_grey;
       }
     }
   }
@@ -113,7 +128,7 @@
 
     &:hover {
       svg * {
-        fill: $turquoise;
+        fill: $lv_grey;
       }
     }
 
@@ -144,7 +159,7 @@
 
   &__user {
     &--active * {
-      fill: $turquoise;
+      fill: $lv_grey;
       fill-rule: inherit;
     }
   }
@@ -193,9 +208,9 @@
     }
 
     &:hover {
-      color: $turquoise;
+      color: $lv_grey;
       svg * {
-        fill: $turquoise;
+        fill: $lv_grey;
       }
     }
 
@@ -215,7 +230,7 @@
   }
 
   &__nav-dropdown {
-    padding: 0 1.5rem;
+    padding: 0 1rem;
 
     &--active {
       background-color: $turquoise-light;
@@ -265,7 +280,7 @@
           position: relative;
 
           &:before {
-            background-color: $turquoise-light;
+            background-color: $white;
             content: "";
             height: 1px;
             left: 0;
@@ -291,4 +306,7 @@
       }
     }
   }
+}
+.main-menu.active {
+  background-color: $black;
 }

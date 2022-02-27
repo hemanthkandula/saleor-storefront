@@ -1,20 +1,13 @@
 import { styled } from "@styles";
-
 import { TitleSize } from "./types";
 
-export const Wrapper = styled.div<{ divider: boolean }>`
+export const Header = styled.div<{ divider: boolean }>`
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: ${props => `1.1rem ${props.theme.spacing.gutter}`};
   ${({ divider, theme }) =>
     divider && `border-bottom: 1px solid ${theme.colors.light};`}
-`;
-
-export const Header = styled.div`
-  display: flex;
-  align-items: center;
-  gap: ${props => props.theme.spacing.gutter};
 `;
 
 export const Title = styled.h4<{ size: TitleSize }>`

@@ -1,48 +1,104 @@
+import gql from "graphql-tag";
+
+import { TypedQuery } from "../../core/queries";
 import {
-  ProductList,
-  ProductListVariables,
-} from "@saleor/sdk/lib/queries/gqlTypes/ProductList";
-import { productList } from "@saleor/sdk/lib/queries/products";
-import { RequireOnlyOne } from "@saleor/sdk/lib/tsHelpers";
-
-import { useTypedQuery } from "@graphql";
-import { channelSlug } from "@temp/constants";
-import { PRODUCTS_PER_PAGE } from "@temp/core/config";
+  basicProductFragment,
+  productPricingFragment,
+} from "../Product/queries";
+import { Category, CategoryVariables } from "./gqlTypes/Category";
 import {
-  convertSortByFromString,
-  convertToAttributeScalar,
-} from "@temp/core/utils";
-import { IFilters } from "@types";
+  CategoryProducts,
+  CategoryProductsVariables,
+} from "./gqlTypes/CategoryProducts";
 
-export const useProductsQuery = (
-  filters: IFilters,
-  ids: RequireOnlyOne<{
-    categoryId: string | undefined;
-    collectionId: string | undefined;
-  }>
-) => {
-  const { categoryId, collectionId } = ids;
+export const categoryProductsDataQuery = gql`
+  query Category($id: ID!) {
+    category(id: $id) {
+      seoDescription
+      seoTitle
+      id
+      name
+      backgroundImage {
+        url
+      }
+      ancestors(last: 5) {
+        edges {
+          node {
+            id
+            name
+          }
+        }
+      }
+    }
+    attributes(
+      filter: { inCategory: $id, filterableInStorefront: true }
+      first: 100
+    ) {
+      edges {
+        node {
+          id
+          name
+          slug
+          values {
+            id
+            name
+            slug
+          }
+        }
+      }
+    }
+  }
+`;
 
-  const variables: ProductListVariables = {
-    filter: {
-      price: {
-        lte: filters.priceLte,
-        gte: filters.priceGte,
-      },
-      collections: collectionId ? [collectionId] : [],
-      categories: categoryId ? [categoryId] : [],
-      attributes: filters.attributes
-        ? convertToAttributeScalar(filters.attributes)
-        : [],
-    },
-    channel: channelSlug,
-    first: PRODUCTS_PER_PAGE,
-    sortBy: convertSortByFromString(filters.sortBy),
-  };
+export const TypedCategoryProductsDataQuery = TypedQuery<
+  Category,
+  CategoryVariables
+>(categoryProductsDataQuery);
 
-  return useTypedQuery<ProductList, ProductListVariables>(productList, {
-    variables,
-    fetchPolicy: "cache-and-network",
-    skip: !(categoryId || collectionId),
-  });
-};
+export const categoryProductsQuery = gql`
+  ${basicProductFragment}
+  ${productPricingFragment}
+  query CategoryProducts(
+    $id: ID!
+    $attributes: [AttributeInput]
+    $after: String
+    $pageSize: Int
+    $sortBy: ProductOrder
+    $priceLte: Float
+    $priceGte: Float
+  ) {
+    products(
+      after: $after
+      first: $pageSize
+      sortBy: $sortBy
+      filter: {
+        attributes: $attributes
+        categories: [$id]
+        minimalPrice: { gte: $priceGte, lte: $priceLte }
+      }
+    ) {
+      totalCount
+      edges {
+        node {
+          ...BasicProductFields
+          ...ProductPricingField
+          category {
+            id
+            name
+          }
+        }
+      }
+      pageInfo {
+        endCursor
+        hasNextPage
+        hasPreviousPage
+        startCursor
+      }
+    }
+  }
+`;
+
+export const TypedCategoryProductsQuery = TypedQuery<
+  CategoryProducts,
+  CategoryProductsVariables
+>(categoryProductsQuery);

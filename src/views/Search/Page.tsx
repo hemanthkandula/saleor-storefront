@@ -1,28 +1,34 @@
+import "./scss/index.scss";
+
 import * as React from "react";
 import { useIntl } from "react-intl";
 
-import { ProductListHeader } from "@components/molecules";
-import { FilterSidebar, ProductList } from "@components/organisms";
-import { Attribute } from "@graphql/gqlTypes/Attribute";
-import { FeaturedProduct } from "@graphql/gqlTypes/FeaturedProduct";
 import { commonMessages } from "@temp/intl";
-import { IFilters } from "@types";
-import { SortOptions } from "@utils/collections";
-
+import { IFilterAttributes, IFilters } from "@types";
 import { DebounceChange, ProductsFeatured, TextField } from "../../components";
+
+import { ProductListHeader } from "../../@next/components/molecules";
+import { ProductList } from "../../@next/components/organisms";
+import { FilterSidebar } from "../../@next/components/organisms/FilterSidebar";
+
 import { maybe } from "../../core/utils";
+
 import { SearchProducts_products } from "./gqlTypes/SearchProducts";
 
-import "./scss/index.scss";
+interface SortItem {
+  label: string;
+  value?: string;
+}
+
+interface SortOptions extends Array<SortItem> {}
 
 interface PageProps {
   activeFilters: number;
-  attributes: Attribute[];
+  attributes: IFilterAttributes[];
   activeSortOption: string;
   displayLoader: boolean;
   filters: IFilters;
   hasNextPage: boolean;
-  featuredProducts: FeaturedProduct[];
   search?: string;
   setSearch?: (
     newValue: string,
@@ -51,7 +57,6 @@ const Page: React.FC<PageProps> = ({
   onOrder,
   sortOptions,
   onAttributeFiltersChange,
-  featuredProducts,
 }) => {
   const canDisplayProducts = maybe(
     () => !!products.edges && products.totalCount !== undefined
@@ -65,8 +70,7 @@ const Page: React.FC<PageProps> = ({
       attributeSlug,
       valueName: attributes
         .find(({ slug }) => attributeSlug === slug)
-        .choices.edges.map(({ node }) => node)
-        .find(({ slug }) => valueSlug === slug).name,
+        .values.find(({ slug }) => valueSlug === slug).name,
       valueSlug,
     };
   };
@@ -141,7 +145,6 @@ const Page: React.FC<PageProps> = ({
 
       {!hasProducts && (
         <ProductsFeatured
-          products={featuredProducts}
           title={intl.formatMessage(commonMessages.youMightLike)}
         />
       )}

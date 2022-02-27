@@ -1,6 +1,5 @@
-import "jest-styled-components";
-
 import { mount, shallow } from "enzyme";
+import "jest-styled-components";
 import React from "react";
 
 import { AttributeValuesChecklist } from ".";

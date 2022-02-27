@@ -1,6 +1,5 @@
 /* tslint:disable */
 /* eslint-disable */
-// @generated
 // This file was automatically generated and should not be edited.
 
 // ====================================================
@@ -8,7 +7,7 @@
 // ====================================================
 
 export interface RegisterAccount_accountRegister_errors {
-  __typename: "AccountError";
+  __typename: "Error";
   /**
    * Name of a field that caused the error. A value of `null` indicates that the
    * error isn't associated with a particular field.
@@ -22,6 +21,9 @@ export interface RegisterAccount_accountRegister_errors {
 
 export interface RegisterAccount_accountRegister {
   __typename: "AccountRegister";
+  /**
+   * List of errors that occurred executing the mutation.
+   */
   errors: RegisterAccount_accountRegister_errors[];
   /**
    * Informs whether users need to confirm their email address.
@@ -39,6 +41,5 @@ export interface RegisterAccount {
 export interface RegisterAccountVariables {
   email: string;
   password: string;
-  redirectUrl?: string | null;
-  channel?: string | null;
+  redirectUrl: string;
 }

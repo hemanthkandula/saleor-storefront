@@ -1,11 +1,9 @@
 import { useAuth } from "@saleor/sdk";
-import { useRouter } from "next/router";
 import React from "react";
+import { ParallaxProvider } from "react-scroll-parallax";
 
-import { Loader } from "@components/atoms";
-import { useDynamicRouteRedirect } from "@hooks";
+import { DemoBanner, Loader } from "@components/atoms";
 import { demoMode } from "@temp/constants";
-import { ShopConfig } from "@utils/ssr";
 
 import {
   Footer,
@@ -16,29 +14,30 @@ import {
 } from "../components";
 import ShopProvider from "../components/ShopProvider";
 import Notifications from "./Notifications";
+import { Routes } from "./routes";
 
+import "./App.css";
 import "../globalStyles/scss/index.scss";
 
-type AppProps = ShopConfig;
-
-const App: React.FC<AppProps> = ({
-  footer,
-  mainMenu,
-  shopConfig,
-  children,
-}) => {
-  const { pathname } = useRouter();
-  const willRedirect = useDynamicRouteRedirect();
+const App: React.FC = () => {
   const { tokenRefreshing, tokenVerifying } = useAuth();
-  const loading = tokenRefreshing || tokenVerifying || willRedirect;
+
+  if (tokenRefreshing || tokenVerifying) {
+    return <Loader />;
+  }
 
   return (
-    <ShopProvider shopConfig={shopConfig}>
-      <OverlayProvider pathname={pathname}>
+    <ShopProvider>
+      <OverlayProvider>
         <MetaConsumer />
-        <MainMenu loading={loading} demoMode={demoMode} menu={mainMenu} />
-        {loading ? <Loader fullScreen /> : children}
-        <Footer menu={footer} />
+        {/* {demoMode && <DemoBanner />} */}
+        <header>
+          <MainMenu />
+        </header>
+        <ParallaxProvider>
+          <Routes />
+        </ParallaxProvider>
+        <Footer />
         <OverlayManager />
         <Notifications />
       </OverlayProvider>

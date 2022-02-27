@@ -1,31 +1,35 @@
-import { useAuth, useCart, useCheckout } from "@saleor/sdk";
 import React, {
   forwardRef,
   RefForwardingComponent,
   useContext,
-  useEffect,
   useImperativeHandle,
   useRef,
   useState,
+  useEffect,
 } from "react";
 import { useIntl } from "react-intl";
+import { RouteComponentProps } from "react-router";
 
 import { CheckoutAddress } from "@components/organisms";
+import { useAuth, useCheckout, useCart } from "@saleor/sdk";
 import { ShopContext } from "@temp/components/ShopProvider/context";
 import { commonMessages } from "@temp/intl";
 import { IAddress, IFormError } from "@types";
 import { filterNotEmptyArrayItems } from "@utils/misc";
 
-import {
-  CheckoutStep,
-  SubpageBaseProps,
-  SubpageCompleteHandler,
-} from "../utils";
+export interface ICheckoutAddressSubpageHandles {
+  submitAddress: () => void;
+}
+
+interface IProps extends RouteComponentProps<any> {
+  changeSubmitProgress: (submitInProgress: boolean) => void;
+  onSubmitSuccess: () => void;
+}
 
 const CheckoutAddressSubpageWithRef: RefForwardingComponent<
-  SubpageCompleteHandler,
-  SubpageBaseProps
-> = ({ changeSubmitProgress, onSubmitSuccess }, ref) => {
+  ICheckoutAddressSubpageHandles,
+  IProps
+> = ({ changeSubmitProgress, onSubmitSuccess, ...props }: IProps, ref) => {
   const checkoutShippingAddressFormId = "shipping-address-form";
   const checkoutShippingAddressFormRef = useRef<HTMLFormElement>(null);
   const checkoutBillingAddressFormId = "billing-address-form";
@@ -68,17 +72,19 @@ const CheckoutAddressSubpageWithRef: RefForwardingComponent<
       }
     : undefined;
 
-  useImperativeHandle(ref, () => () => {
-    if (isShippingRequiredForProducts) {
-      checkoutShippingAddressFormRef.current?.dispatchEvent(
-        new Event("submit", { cancelable: true })
-      );
-    } else {
-      checkoutBillingAddressFormRef.current?.dispatchEvent(
-        new Event("submit", { cancelable: true })
-      );
-    }
-  });
+  useImperativeHandle(ref, () => ({
+    submitAddress: () => {
+      if (isShippingRequiredForProducts) {
+        checkoutShippingAddressFormRef.current?.dispatchEvent(
+          new Event("submit", { cancelable: true })
+        );
+      } else {
+        checkoutBillingAddressFormRef.current?.dispatchEvent(
+          new Event("submit", { cancelable: true })
+        );
+      }
+    },
+  }));
 
   const [billingAsShippingState, setBillingAsShippingState] = useState(
     billingAsShipping
@@ -152,7 +158,6 @@ const CheckoutAddressSubpageWithRef: RefForwardingComponent<
           }),
         },
       ]);
-      changeSubmitProgress(false);
       return;
     }
 
@@ -192,7 +197,7 @@ const CheckoutAddressSubpageWithRef: RefForwardingComponent<
       setBillingErrors(errors);
     } else {
       setBillingErrors([]);
-      onSubmitSuccess(CheckoutStep.Shipping);
+      onSubmitSuccess();
     }
   };
 
@@ -211,6 +216,7 @@ const CheckoutAddressSubpageWithRef: RefForwardingComponent<
 
   return (
     <CheckoutAddress
+      {...props}
       shippingErrors={shippingErrors}
       billingErrors={billingErrors}
       shippingFormId={checkoutShippingAddressFormId}

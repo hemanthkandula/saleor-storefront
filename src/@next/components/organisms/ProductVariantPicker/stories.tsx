@@ -3,8 +3,8 @@ import { storiesOf } from "@storybook/react";
 import React, { ReactNode } from "react";
 import styled from "styled-components";
 
-import { productVariants } from "./fixtures";
 import ProductVariantPicker from "./ProductVariantPicker";
+import { productVariants } from "./fixtures";
 
 let portalRoot = document.getElementById("portal-root");
 if (!portalRoot) {

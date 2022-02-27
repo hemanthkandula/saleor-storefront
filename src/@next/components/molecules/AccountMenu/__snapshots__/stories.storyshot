@@ -61,20 +61,34 @@ exports[`Storyshots @components/molecules/AccountMenu default 1`] = `
         My Account
       </div>
       <a
-        href="/account"
+        data-test="accountMenuLink"
+        data-test-id="/personal-information/"
+        href="/personal-information/"
         onClick={[Function]}
-        onMouseEnter={[Function]}
       >
         <div
           className="c4"
         >
-          Account
+          Personal Information
         </div>
       </a>
       <a
-        href="/account/order-history"
+        data-test="accountMenuLink"
+        data-test-id="/address-book/"
+        href="/address-book/"
         onClick={[Function]}
-        onMouseEnter={[Function]}
+      >
+        <div
+          className="c5"
+        >
+          Address book
+        </div>
+      </a>
+      <a
+        data-test="accountMenuLink"
+        data-test-id="/order-history/"
+        href="/order-history/"
+        onClick={[Function]}
       >
         <div
           className="c4"
@@ -83,14 +97,15 @@ exports[`Storyshots @components/molecules/AccountMenu default 1`] = `
         </div>
       </a>
       <a
-        href="/account/address-book"
+        data-test="accountMenuLink"
+        data-test-id="/payment-options/"
+        href="/payment-options/"
         onClick={[Function]}
-        onMouseEnter={[Function]}
       >
         <div
-          className="c5"
+          className="c4"
         >
-          Address book
+          Payment Options
         </div>
       </a>
     </div>

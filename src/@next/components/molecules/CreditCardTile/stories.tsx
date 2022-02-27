@@ -3,7 +3,6 @@ import { storiesOf } from "@storybook/react";
 import React from "react";
 
 import { CCProviders } from "@components/atoms";
-
 import { CreditCardTile } from ".";
 
 const onRemove = action("onRemove called");

@@ -1,9 +1,10 @@
-import { useAccountUpdate, useAuth } from "@saleor/sdk";
 import React from "react";
 import { FormattedMessage, useIntl } from "react-intl";
 
-import { Attribute, IconButton, Tile } from "@components/atoms";
 import { commonMessages } from "@temp/intl";
+import { useAccountUpdate, useAuth } from "@saleor/sdk";
+
+import { Attribute, IconButton, Tile } from "@components/atoms";
 
 import { AccountUpdateForm } from "./AccountUpdateForm";
 import * as S from "./styles";

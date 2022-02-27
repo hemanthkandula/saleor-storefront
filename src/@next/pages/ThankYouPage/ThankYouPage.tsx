@@ -1,30 +1,23 @@
-import { useAuth } from "@saleor/sdk";
-import { NextPage } from "next";
 import React from "react";
-import { generatePath } from "react-router";
+import { useHistory, useLocation } from "react-router-dom";
 
 import { ThankYou } from "@components/organisms";
-import { paths } from "@paths";
-import NotFound from "@temp/components/NotFound";
+import { BASE_URL } from "@temp/core/config";
+import { generateGuestOrderDetailsUrl } from "@utils/core";
 
 import { IProps } from "./types";
 
-export const ThankYouPage: NextPage<IProps> = ({
-  query: { orderNumber, token, orderStatus },
-}) => {
-  const { user } = useAuth();
-
-  return token && orderNumber && orderStatus ? (
+const ThankYouPage: React.FC<IProps> = ({}: IProps) => {
+  const location = useLocation();
+  const history = useHistory();
+  const { token, orderNumber } = location.state;
+  return (
     <ThankYou
-      continueShoppingUrl={paths.home}
+      continueShopping={() => history.push(BASE_URL)}
       orderNumber={orderNumber}
-      orderDetailsUrl={generatePath(
-        user ? paths.accountOrderDetail : paths.guestOrderDetail,
-        { token }
-      )}
-      orderStatus={orderStatus}
+      orderDetails={() => history.push(generateGuestOrderDetailsUrl(token))}
     />
-  ) : (
-    <NotFound />
   );
 };
+
+export { ThankYouPage };

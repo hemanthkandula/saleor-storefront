@@ -1,15 +1,14 @@
+import "./scss/index.scss";
+
 import * as React from "react";
 import { FormattedMessage, useIntl } from "react-intl";
-
-import { paths } from "@paths";
-import { channelSlug } from "@temp/constants";
 import { commonMessages } from "@temp/intl";
 
 import { Button, Form, TextField } from "..";
-import { ResetPasswordRequest } from "./gqlTypes/ResetPasswordRequest";
 import { TypedPasswordResetRequestMutation } from "./queries";
 
-import "./scss/index.scss";
+import { passwordResetUrl } from "../../app/routes";
+import { ResetPasswordRequest } from "./gqlTypes/ResetPasswordRequest";
 
 const PasswordResetRequestForm: React.FC = () => {
   const intl = useIntl();
@@ -42,8 +41,7 @@ const PasswordResetRequestForm: React.FC = () => {
                 passwordReset({
                   variables: {
                     email,
-                    redirectUrl: `${location.origin}${paths.passwordReset}`,
-                    channel: channelSlug,
+                    redirectUrl: `${window.location.origin}${passwordResetUrl}`,
                   },
                 });
               }}

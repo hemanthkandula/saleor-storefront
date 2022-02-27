@@ -1,2 +1,2 @@
 export { default as MobileNavList } from "./NavList";
-export type { INavItem } from "./NavItem";
+export { INavItem } from "./NavItem";

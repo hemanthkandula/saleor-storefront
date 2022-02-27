@@ -1,6 +1,7 @@
 import { styled } from "@styles";
+import { NavLink } from "react-router-dom";
 
-export const Link = styled.a<{ fullWidth: boolean; activeClassName?: string }>`
+export const Link = styled(NavLink)<{ fullWidth: boolean }>`
   position: relative;
   font-weight: ${({ theme }) => theme.typography.boldFontWeight};
   text-transform: uppercase;
@@ -17,7 +18,7 @@ export const Link = styled.a<{ fullWidth: boolean; activeClassName?: string }>`
   &:hover, &:focus {
     outline: none;
     color: ${({ theme }) => theme.colors.primary};
-  }
+  }       
 
   /* Active URL styles
   &.${props => props.activeClassName} {

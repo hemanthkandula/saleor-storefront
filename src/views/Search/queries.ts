@@ -1,8 +1,7 @@
 import gql from "graphql-tag";
 
-import { attributeFragment, productPricingFragment } from "@graphql";
-
 import { TypedQuery } from "../../core/queries";
+import { productPricingFragment } from "../Product/queries";
 import {
   SearchProducts,
   SearchProductsVariables,
@@ -10,17 +9,14 @@ import {
 
 export const searchProductsQuery = gql`
   ${productPricingFragment}
-  ${attributeFragment}
   query SearchProducts(
     $query: String!
-    $channel: String!
     $attributes: [AttributeInput]
     $pageSize: Int
     $sortBy: ProductOrder
     $after: String
   ) {
     products(
-      channel: $channel
       filter: { search: $query, attributes: $attributes }
       first: $pageSize
       sortBy: $sortBy
@@ -32,7 +28,6 @@ export const searchProductsQuery = gql`
           ...ProductPricingField
           id
           name
-          slug
           thumbnail {
             url
             alt
@@ -54,7 +49,14 @@ export const searchProductsQuery = gql`
     attributes(filter: { filterableInStorefront: true }, first: 100) {
       edges {
         node {
-          ...Attribute
+          id
+          name
+          slug
+          values {
+            id
+            name
+            slug
+          }
         }
       }
     }

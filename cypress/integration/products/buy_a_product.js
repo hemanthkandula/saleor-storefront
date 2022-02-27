@@ -29,6 +29,8 @@ describe("Buy a product", () => {
       .addItemWithShippingToTheBasket()
       .get(PRODUCTS_SELECTORS.proceedToCheckoutBtn)
       .click()
+      .get(CHECKOUT_SELECTORS.CHECKOUT_LINKS.address)
+      .click()
       .get(CHECKOUT_SELECTORS.addNewShippingAddress)
       .first()
       .click()
@@ -78,6 +80,8 @@ describe("Buy a product", () => {
       .click()
       .get(CHECKOUT_SELECTORS.continueAsAGuest)
       .click()
+      .get(CHECKOUT_SELECTORS.CHECKOUT_LINKS.address)
+      .click()
       .get(CHECKOUT_SELECTORS.SHIPPING_ADDRESS_SELECTORS.shippingAddressForm)
       .within(() => {
         return cy.addNewAddress(address);
@@ -120,6 +124,8 @@ describe("Buy a product", () => {
       .addItemWithNoShippingToTheBasket()
       .get(PRODUCTS_SELECTORS.proceedToCheckoutBtn)
       .click()
+      .get(CHECKOUT_SELECTORS.CHECKOUT_LINKS.address)
+      .click()
       .get(CHECKOUT_SELECTORS.addNewBillingAddress)
       .first()
       .click()
@@ -161,6 +167,8 @@ describe("Buy a product", () => {
       .get(PRODUCTS_SELECTORS.proceedToCheckoutBtn)
       .click()
       .get(CHECKOUT_SELECTORS.continueAsAGuest)
+      .click()
+      .get(CHECKOUT_SELECTORS.CHECKOUT_LINKS.address)
       .click()
       .get(CHECKOUT_SELECTORS.SHIPPING_ADDRESS_SELECTORS.billingAddressForm)
       .within(() => {

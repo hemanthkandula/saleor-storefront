@@ -1,8 +1,8 @@
-import "jest-styled-components";
-
 import { mount } from "enzyme";
+import "jest-styled-components";
 import React from "react";
 import { IntlProvider } from "react-intl";
+import { MemoryRouter } from "react-router";
 
 import { Icon } from "@components/atoms";
 
@@ -15,11 +15,13 @@ describe("<CartRow />", () => {
     const onQuantityChangeMock = jest.fn();
     const wrapper = mount(
       <IntlProvider locale="en">
-        <CartRow
-          {...DEFAULT_PROPS}
-          onRemove={onRemoveMock}
-          onQuantityChange={onQuantityChangeMock}
-        />
+        <MemoryRouter>
+          <CartRow
+            {...DEFAULT_PROPS}
+            onRemove={onRemoveMock}
+            onQuantityChange={onQuantityChangeMock}
+          />
+        </MemoryRouter>
       </IntlProvider>
     );
 
@@ -31,11 +33,13 @@ describe("<CartRow />", () => {
     const onQuantityChangeMock = jest.fn();
     const wrapper = mount(
       <IntlProvider locale="en">
-        <CartRow
-          {...DEFAULT_PROPS}
-          onRemove={onRemoveMock}
-          onQuantityChange={onQuantityChangeMock}
-        />
+        <MemoryRouter>
+          <CartRow
+            {...DEFAULT_PROPS}
+            onRemove={onRemoveMock}
+            onQuantityChange={onQuantityChangeMock}
+          />
+        </MemoryRouter>
       </IntlProvider>
     );
     wrapper
@@ -51,11 +55,13 @@ describe("<CartRow />", () => {
     const onQuantityChangeMock = jest.fn();
     const wrapper = mount(
       <IntlProvider locale="en">
-        <CartRow
-          {...DEFAULT_PROPS}
-          onRemove={onRemoveMock}
-          onQuantityChange={onQuantityChangeMock}
-        />
+        <MemoryRouter>
+          <CartRow
+            {...DEFAULT_PROPS}
+            onRemove={onRemoveMock}
+            onQuantityChange={onQuantityChangeMock}
+          />
+        </MemoryRouter>
       </IntlProvider>
     );
 
@@ -74,11 +80,13 @@ describe("<CartRow />", () => {
     const onQuantityChangeMock = jest.fn();
     const wrapper = mount(
       <IntlProvider locale="en">
-        <CartRow
-          {...DEFAULT_PROPS}
-          onRemove={onRemoveMock}
-          onQuantityChange={onQuantityChangeMock}
-        />
+        <MemoryRouter>
+          <CartRow
+            {...DEFAULT_PROPS}
+            onRemove={onRemoveMock}
+            onQuantityChange={onQuantityChangeMock}
+          />
+        </MemoryRouter>
       </IntlProvider>
     );
 
@@ -97,13 +105,15 @@ describe("<CartRow />", () => {
     const onQuantityChangeMock = jest.fn();
     const wrapper = mount(
       <IntlProvider locale="en">
-        <CartRow
-          {...DEFAULT_PROPS}
-          maxQuantity={3}
-          quantity={3}
-          onRemove={onRemoveMock}
-          onQuantityChange={onQuantityChangeMock}
-        />
+        <MemoryRouter>
+          <CartRow
+            {...DEFAULT_PROPS}
+            maxQuantity={3}
+            quantity={3}
+            onRemove={onRemoveMock}
+            onQuantityChange={onQuantityChangeMock}
+          />
+        </MemoryRouter>
       </IntlProvider>
     );
 

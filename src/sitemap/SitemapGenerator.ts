@@ -1,11 +1,10 @@
 /* eslint-disable no-console */
 
 import fs from "fs";
+import { chunk } from "lodash";
 import path from "path";
 /* eslint-disable-next-line import/no-extraneous-dependencies */
 import { buildSitemapIndex, createSitemap } from "sitemap";
-
-import { chunk } from "../@next/utils/misc";
 
 class SitemapGenerator {
   urls: [object?];
@@ -30,7 +29,7 @@ class SitemapGenerator {
     this.hostname = options.hostname;
     this.destinationDir = options.destinationDir || ".";
     this.sitemapName = options.sitemapName || "sitemap";
-    this.sitemapSize = options.sitemapSize || 5;
+    this.sitemapSize = options.sitemapSize || 50000;
     this.cacheTime = options.cacheTime || 600000;
   }
 

@@ -1,6 +1,5 @@
 import React from "react";
 import { FormattedMessage } from "react-intl";
-
 import { LoginForm } from "..";
 import ForgottenPassword from "../OverlayManager/Login/ForgottenPassword";
 

@@ -4,7 +4,6 @@ export const items = [
     id: "TWVudUl0ZW06Mjcx",
     name: "Accessories",
     category: {
-      slug: "accessories",
       id: "Q2F0ZWdvcnk6Nw==",
       name: "Accessories",
       __typename: "Category",
@@ -22,7 +21,6 @@ export const items = [
           id: "Q2F0ZWdvcnk6Nw==",
           name: "Accessories",
           __typename: "Category",
-          slug: "category",
         },
         url: null,
         collection: null,
@@ -37,7 +35,6 @@ export const items = [
               id: "Q2F0ZWdvcnk6Nw==",
               name: "Accessories",
               __typename: "Category",
-              slug: "category",
             },
           },
         ],
@@ -48,7 +45,6 @@ export const items = [
         category: {
           id: "Q2F0ZWdvcnk6Nw==",
           name: "Accessories",
-          slug: "accessories",
           __typename: "Category",
         },
         url: null,
@@ -64,7 +60,6 @@ export const items = [
     id: "TWVudUl0ZW06Mjcy",
     name: "Groceries",
     category: {
-      slug: "groceries",
       id: "Q2F0ZWdvcnk6OA==",
       name: "Groceries",
       __typename: "Category",
@@ -80,7 +75,6 @@ export const items = [
     id: "TWVudUl0ZW06Mjcz",
     name: "Apparel",
     category: {
-      slug: "aroceries",
       id: "Q2F0ZWdvcnk6OQ==",
       name: "Apparel",
       __typename: "Category",

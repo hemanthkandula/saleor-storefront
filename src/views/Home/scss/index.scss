@@ -1,18 +1,88 @@
 @import "../../../globalStyles/scss/variables.scss";
-
+.bottom_aligner {
+  display: inline-block;
+  height: 20%;
+  vertical-align: bottom;
+  width: 0;
+  background-color: black;
+}
 .home-page {
+  z-index: 100;
+  background-color: black;
+
+
+  &-video {
+    position: absolute;
+    z-index: -1;
+    width: 100%;
+    top: 0;
+    left: 0;
+  }
   &__hero {
-    background-color: $blue-overlay;
-    background-blend-mode: multiply;
-    background-size: cover;
-    background-position: center;
-    text-align: center;
-    padding: 12rem 0;
+    //background-color: $blue-overlay;
+    //background-blend-mode: multiply;
+    //background-size: cover;
+    //background-position: center;
+    text-align: start;
+    padding: 2rem 0;
+    height: 100vh;
+    margin-left: 1%;
+    //height: 50%;
 
     &-text {
-      overflow: hidden;
-    }
+      //overflow: hidden;
+    padding-top: $spacer * 4;
+      //margin-bottom: $spacer * 4;
+      p {
+        line-height: $h1-font-size;
 
+      }
+      &_reg {
+
+        font-family: CardinalFruitRegular, serif;
+        //font-weight: 900;
+        font-size: $large-font-size;
+
+
+      }
+
+      &_italic{
+        font-family: CardinalFruitItalic, serif;
+        //font-weight: 900;
+        font-size: $large-font-size;
+      }
+    }
+    &__center {
+      p {
+        line-height: $h2-font-size;
+
+      }
+      text-align: center;
+
+      //overflow: hidden;
+      margin-bottom: $spacer * 4;
+      &_button {
+        font-family: Helvetica Neue, Medium, serif;
+        //font-weight: 900;
+        //font-size: $large-font-size;
+
+
+      }
+      &_reg {
+        font-family: CardinalFruitRegular, serif;
+        font-weight: 200;
+        font-size: $h2-font-size;
+        line-height: normal;
+
+      }
+
+
+      &_italic{
+        font-family: CardinalFruitItalic, serif;
+        //font-weight: 900;
+        font-size: $large-font-size;
+      }
+    }
     @media (max-width: $small-screen) {
       align-items: center;
       display: flex;
@@ -63,7 +133,35 @@
       }
     }
   }
+  &__centerhero {
+    //background-color: $blue-overlay;
+    //background-blend-mode: multiply;
+    //background-size: cover;
+    //background-position: center;
+    text-align: center;
+    padding: 1rem 0;
+    //height: 100vh;
+    margin-left: 1%;
 
+    &-text {
+      //overflow: hidden;
+
+      margin-bottom: $spacer * 4;
+      &_reg {
+        font-family: CardinalFruitRegular, serif;
+        //font-weight: 900;
+        font-size: $large-font-size;
+
+
+      }
+
+      &_italic{
+        font-family: CardinalFruitItalic, serif;
+        //font-weight: 900;
+        font-size: $large-font-size;
+      }
+    }
+  }
   &__categories {
     margin-bottom: 2rem;
 

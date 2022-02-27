@@ -1,8 +1,5 @@
-import React from "react";
-
 import { IImage } from "@types";
-
-export type ICartRowType = "responsive" | "condense";
+import React from "react";
 
 export interface IProps {
   /**
@@ -13,7 +10,6 @@ export interface IProps {
    * Id of the product
    */
   id: string;
-  slug: string;
   /**
    * Price for single unit
    */
@@ -57,8 +53,4 @@ export interface IProps {
     attribute: { id: string; name: string };
     values: Array<{ name: string }>;
   }>;
-  /**
-   * Visual row style
-   */
-  type?: ICartRowType;
 }

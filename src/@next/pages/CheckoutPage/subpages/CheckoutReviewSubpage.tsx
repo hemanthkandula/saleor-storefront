@@ -1,44 +1,44 @@
-import { OrderStatus, useCheckout } from "@saleor/sdk";
 import React, {
   forwardRef,
   RefForwardingComponent,
   useImperativeHandle,
   useState,
 } from "react";
+import { RouteComponentProps } from "react-router";
 
 import { CheckoutReview } from "@components/organisms";
 import { statuses as dummyStatuses } from "@components/organisms/DummyPaymentGateway";
-import { paymentGatewayNames } from "@temp/constants";
+import { useCheckout } from "@saleor/sdk";
 import { IFormError } from "@types";
-
-import {
-  CheckoutStep,
-  SubpageBaseProps,
-  SubpageCompleteHandler,
-} from "../utils";
 
 export interface ISubmitCheckoutData {
   id: string;
   orderNumber: string;
   token: string;
-  orderStatus: OrderStatus;
 }
 
-interface CheckoutReviewSubpageProps extends SubpageBaseProps {
+export interface ICheckoutReviewSubpageHandles {
+  complete: () => void;
+}
+
+interface IProps extends RouteComponentProps<any> {
   selectedPaymentGatewayToken?: string;
   paymentGatewayFormRef: React.RefObject<HTMLFormElement>;
+  changeSubmitProgress: (submitInProgress: boolean) => void;
+  onSubmitSuccess: (data: ISubmitCheckoutData) => void;
 }
 
 const CheckoutReviewSubpageWithRef: RefForwardingComponent<
-  SubpageCompleteHandler,
-  CheckoutReviewSubpageProps
+  ICheckoutReviewSubpageHandles,
+  IProps
 > = (
   {
     selectedPaymentGatewayToken,
     paymentGatewayFormRef,
     changeSubmitProgress,
     onSubmitSuccess,
-  },
+    ...props
+  }: IProps,
   ref
 ) => {
   const { checkout, payment, completeCheckout } = useCheckout();
@@ -60,14 +60,14 @@ const CheckoutReviewSubpageWithRef: RefForwardingComponent<
     : undefined;
 
   const getPaymentMethodDescription = () => {
-    if (payment?.gateway === paymentGatewayNames.dummy) {
+    if (payment?.gateway === "mirumee.payments.dummy") {
       return `Dummy: ${
         dummyStatuses.find(
           status => status.token === selectedPaymentGatewayToken
         )?.label
       }`;
     }
-    if (payment?.gateway === paymentGatewayNames.adyen) {
+    if (payment?.gateway === "mirumee.payments.adyen") {
       return `Adyen payments`;
     }
     if (payment?.creditCard) {
@@ -76,40 +76,38 @@ const CheckoutReviewSubpageWithRef: RefForwardingComponent<
     return ``;
   };
 
-  useImperativeHandle(ref, () => async () => {
-    changeSubmitProgress(true);
-    let data;
-    let dataError;
-    if (payment?.gateway === paymentGatewayNames.adyen) {
-      paymentGatewayFormRef.current?.dispatchEvent(
-        new Event("submitComplete", { cancelable: true })
-      );
-    } else if (payment?.gateway === paymentGatewayNames.stripe) {
-      paymentGatewayFormRef.current?.dispatchEvent(
-        new Event("submitComplete", { cancelable: true })
-      );
-    } else {
-      const response = await completeCheckout();
-      data = response.data;
-      dataError = response.dataError;
-      changeSubmitProgress(false);
-      const errors = dataError?.error;
-      if (errors) {
-        setErrors(errors);
+  useImperativeHandle(ref, () => ({
+    complete: async () => {
+      changeSubmitProgress(true);
+      let data;
+      let dataError;
+      if (payment?.gateway === "mirumee.payments.adyen") {
+        paymentGatewayFormRef.current?.dispatchEvent(
+          new Event("submitComplete", { cancelable: true })
+        );
       } else {
-        setErrors([]);
-        onSubmitSuccess(CheckoutStep.Review, {
-          id: data?.order?.id,
-          orderStatus: data?.order?.status,
-          orderNumber: data?.order?.number,
-          token: data?.order?.token,
-        });
+        const response = await completeCheckout();
+        data = response.data;
+        dataError = response.dataError;
+        changeSubmitProgress(false);
+        const errors = dataError?.error;
+        if (errors) {
+          setErrors(errors);
+        } else {
+          setErrors([]);
+          onSubmitSuccess({
+            id: data?.order?.id,
+            orderNumber: data?.order?.number,
+            token: data?.order?.token,
+          });
+        }
       }
-    }
-  });
+    },
+  }));
 
   return (
     <CheckoutReview
+      {...props}
       shippingAddress={checkoutShippingAddress}
       billingAddress={checkoutBillingAddress}
       shippingMethodName={checkout?.shippingMethod?.name}

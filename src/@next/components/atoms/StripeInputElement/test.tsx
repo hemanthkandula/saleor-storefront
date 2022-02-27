@@ -1,8 +1,7 @@
-import "jest-styled-components";
-
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 import { shallow } from "enzyme";
+import "jest-styled-components";
 import React from "react";
 
 import { StripeInputElement } from ".";

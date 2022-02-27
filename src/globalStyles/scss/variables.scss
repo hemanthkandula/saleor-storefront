@@ -1,5 +1,6 @@
 // colors
-$base-font-color: #323232;
+$base-font-color: #f6f6f6;
+//$base-font-color: #323232;
 $black: #000;
 $blue-dark: #190c4e;
 $blue: #21125e;
@@ -16,13 +17,17 @@ $blue-overlay: rgba($blue, 0.15);
 $autofillColor: rgb(250, 255, 189);
 $autofillColorSelected: rgb(232, 240, 254);
 $darkGreen: #06847b;
+$lv_grey : #9d9996;
 
 // typography
 $base-font-family: "Inter", sans-serif;
 $base-font-size: 1rem; // 16px
 $small-font-size: 0.875rem; // 14px
+$smaller-font-size: 0.7rem; // 14px
 $base-line-height: 1.25rem; // 20px
 $h1-font-size: 4rem; // 64px
+$h2-font-size: 2.5rem; // 64px
+$large-font-size: 10rem; // 64px
 $h1-line-height: 1;
 $h3-font-size: 1.5rem; // 24px
 $h4-font-size: 1.125rem; // 18px
@@ -97,3 +102,15 @@ $modal-min-height: 455px;
   mediumScreen: $medium-screen;
   smallScreen: $small-screen;
 }
+
+//@font-face {
+//  font-family: 'CardinalFruitRegular';
+//  src: local('CardinalFruitRegular'), url(./assets/CardinalFruit/cardinalfruitweb-regular-TRIAL.woff) format('woff');
+//  /* other formats include: 'woff2', 'truetype, 'opentype',
+//                            'embedded-opentype', and 'svg' */
+//}
+
+//@font-face {
+//  font-family: 'CardinalFruit';
+//  src: local('CardinalFruit'), url(./fonts/Lato-Regular.otf) format('opentype');
+//}

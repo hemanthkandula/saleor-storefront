@@ -1,6 +1,9 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 
+import "./scss/index.scss";
+
 import classNames from "classnames";
+import { filter, find } from "lodash";
 import * as React from "react";
 
 import { useClickedOutside } from "../../hooks";
@@ -12,15 +15,13 @@ import {
 } from "./customTypes";
 import SelectOptionsList from "./SelectOptionsList";
 
-import "./scss/index.scss";
-
 const updateOptions = (
   { label, value }: ISelectItem,
   onChange: ISelectChange
 ) => onChange({ country: label, code: value });
 
 const filterList = ({ searchPhrase, options }: IFilteredListArgs) =>
-  options.filter(({ label }) =>
+  filter(options, ({ label }) =>
     label.toLowerCase().includes(searchPhrase.toLowerCase())
   );
 
@@ -29,7 +30,10 @@ const isAutofilled = (inputValue: string, newInputValue: string) =>
   newInputValue.substring(0, newInputValue.length - 1) !== inputValue;
 
 const findAutofilledOption = (options: ISelectItem[], inputValue: string) =>
-  options.find(({ label }) => label.toLowerCase() === inputValue.toLowerCase());
+  find(
+    options,
+    ({ label }) => label.toLowerCase() === inputValue.toLowerCase()
+  );
 
 export const Select = (props: ISelectProps) => {
   const {

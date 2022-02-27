@@ -1,6 +1,5 @@
 import * as React from "react";
 import ReactSVG from "react-svg";
-
 import "./scss/index.scss";
 
 interface Medium {

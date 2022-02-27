@@ -1,6 +1,5 @@
-import "jest-styled-components";
-
 import { mount } from "enzyme";
+import "jest-styled-components";
 import React from "react";
 
 import { DummyPaymentGateway } from ".";

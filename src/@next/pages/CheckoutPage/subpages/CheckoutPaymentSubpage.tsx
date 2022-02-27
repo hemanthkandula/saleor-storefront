@@ -1,4 +1,3 @@
-import { useCheckout } from "@saleor/sdk";
 import React, {
   forwardRef,
   RefForwardingComponent,
@@ -7,23 +6,34 @@ import React, {
   useState,
 } from "react";
 import { useIntl } from "react-intl";
+import { RouteComponentProps } from "react-router";
 
 import { CheckoutPayment } from "@components/organisms";
+import { useCheckout } from "@saleor/sdk";
 import { commonMessages } from "@temp/intl";
 import { IFormError } from "@types";
 
-import { SubpageBaseProps, SubpageCompleteHandler } from "../utils";
-
-interface CheckoutPaymentSubpageProps extends SubpageBaseProps {
+export interface ICheckoutPaymentSubpageHandles {
+  submitPayment: () => void;
+}
+interface IProps extends RouteComponentProps<any> {
   paymentGatewayFormRef: React.RefObject<HTMLFormElement>;
+  changeSubmitProgress: (submitInProgress: boolean) => void;
+  onSubmitSuccess: () => void;
   onPaymentGatewayError: (errors: IFormError[]) => void;
 }
 
 const CheckoutPaymentSubpageWithRef: RefForwardingComponent<
-  SubpageCompleteHandler,
-  CheckoutPaymentSubpageProps
+  ICheckoutPaymentSubpageHandles,
+  IProps
 > = (
-  { paymentGatewayFormRef, changeSubmitProgress, onPaymentGatewayError },
+  {
+    paymentGatewayFormRef,
+    changeSubmitProgress,
+    onSubmitSuccess,
+    onPaymentGatewayError,
+    ...props
+  }: IProps,
   ref
 ) => {
   const { promoCodeDiscount, addPromoCode, removePromoCode } = useCheckout();
@@ -34,22 +44,24 @@ const CheckoutPaymentSubpageWithRef: RefForwardingComponent<
   const promoCodeDiscountFormRef = useRef<HTMLFormElement>(null);
   const intl = useIntl();
 
-  useImperativeHandle(ref, () => () => {
-    if (promoCodeDiscountFormRef.current) {
-      promoCodeDiscountFormRef.current?.dispatchEvent(
-        new Event("submit", { cancelable: true })
-      );
-    } else if (paymentGatewayFormRef.current) {
-      paymentGatewayFormRef.current.dispatchEvent(
-        new Event("submit", { cancelable: true })
-      );
-    } else {
-      changeSubmitProgress(false);
-      onPaymentGatewayError([
-        { message: intl.formatMessage(commonMessages.choosePaymentMethod) },
-      ]);
-    }
-  });
+  useImperativeHandle(ref, () => ({
+    submitPayment: () => {
+      if (promoCodeDiscountFormRef.current) {
+        promoCodeDiscountFormRef.current?.dispatchEvent(
+          new Event("submit", { cancelable: true })
+        );
+      } else if (paymentGatewayFormRef.current) {
+        paymentGatewayFormRef.current.dispatchEvent(
+          new Event("submit", { cancelable: true })
+        );
+      } else {
+        changeSubmitProgress(false);
+        onPaymentGatewayError([
+          { message: intl.formatMessage(commonMessages.choosePaymentMethod) },
+        ]);
+      }
+    },
+  }));
 
   const handleAddPromoCode = async (promoCode: string) => {
     const { dataError } = await addPromoCode(promoCode);
@@ -106,6 +118,7 @@ const CheckoutPaymentSubpageWithRef: RefForwardingComponent<
 
   return (
     <CheckoutPayment
+      {...props}
       promoCodeDiscountFormId={promoCodeDiscountFormId}
       promoCodeDiscountFormRef={promoCodeDiscountFormRef}
       promoCodeDiscount={{

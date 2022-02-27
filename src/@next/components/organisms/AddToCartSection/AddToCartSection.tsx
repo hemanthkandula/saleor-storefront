@@ -1,24 +1,24 @@
+import React, { useState } from "react";
+import { useIntl } from "react-intl";
+
+import { commonMessages } from "@temp/intl";
 import { ICheckoutModelLine } from "@saleor/sdk/lib/helpers";
 import {
   ProductDetails_product_pricing,
   ProductDetails_product_variants,
   ProductDetails_product_variants_pricing,
 } from "@saleor/sdk/lib/queries/gqlTypes/ProductDetails";
-import React, { useState } from "react";
-import { useIntl } from "react-intl";
 
-import { commonMessages } from "@temp/intl";
 import { IProductVariantsAttributesSelectedValues } from "@types";
-
+// import QuantityInput from "../../molecules/QuantityInput";
 import AddToCartButton from "../../molecules/AddToCartButton";
-import QuantityInput from "../../molecules/QuantityInput";
 import ProductVariantPicker from "../ProductVariantPicker";
+import * as S from "./styles";
 import {
-  canAddToCart,
   getAvailableQuantity,
   getProductPrice,
+  canAddToCart,
 } from "./stockHelpers";
-import * as S from "./styles";
 
 const LOW_STOCK_QUANTITY: number = 5;
 
@@ -52,7 +52,8 @@ const AddToCartSection: React.FC<IAddToCartSection> = ({
 }) => {
   const intl = useIntl();
 
-  const [quantity, setQuantity] = useState<number>(1);
+  // const [quantity, setQuantity] = useState<number>(1);
+  const [quantity] = useState<number>(1);
   const [variantStock, setVariantStock] = useState<number>(0);
   const [
     variantPricing,
@@ -111,7 +112,7 @@ const AddToCartSection: React.FC<IAddToCartSection> = ({
 
   return (
     <S.AddToCartSelection>
-      <S.ProductNameHeader data-test="productName">{name}</S.ProductNameHeader>
+      {/*<S.ProductNameHeader data-test="productName">{name}</S.ProductNameHeader>*/}
       {isOutOfStock ? (
         renderErrorMessage(
           intl.formatMessage(commonMessages.outOfStock),
@@ -161,19 +162,21 @@ const AddToCartSection: React.FC<IAddToCartSection> = ({
           onAttributeChangeHandler={onAttributeChangeHandler}
         />
       </S.VariantPicker>
-      <S.QuantityInput>
-        <QuantityInput
-          quantity={quantity}
-          maxQuantity={availableQuantity}
-          disabled={isOutOfStock || isNoItemsAvailable}
-          onQuantityChange={setQuantity}
-          hideErrors={!variantId || isOutOfStock || isNoItemsAvailable}
-          testingContext="addToCartQuantity"
-        />
-      </S.QuantityInput>
+      {/*<S.QuantityInput>*/}
+      {/*  <QuantityInput*/}
+      {/*    quantity={quantity}*/}
+      {/*    maxQuantity={availableQuantity}*/}
+      {/*    disabled={isOutOfStock || isNoItemsAvailable}*/}
+      {/*    onQuantityChange={setQuantity}*/}
+      {/*    hideErrors={!variantId || isOutOfStock || isNoItemsAvailable}*/}
+      {/*    testingContext="addToCartQuantity"*/}
+      {/*  />*/}
+      {/*</S.QuantityInput>*/}
       <AddToCartButton
         onSubmit={() => onAddToCart(variantId, quantity)}
         disabled={disableButton}
+        variantPricing={variantPricing}
+        productPricingRange={productPricing}
       />
     </S.AddToCartSelection>
   );

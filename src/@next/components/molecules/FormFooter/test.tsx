@@ -1,11 +1,9 @@
-import "jest-styled-components";
-
+import { defaultTheme } from "@styles";
 import { mount, shallow } from "enzyme";
+import "jest-styled-components";
 import React from "react";
 
 import { Button, ButtonLink } from "@components/atoms";
-import { defaultTheme } from "@styles";
-
 import { FormFooter } from ".";
 import * as S from "./styles";
 import { IProps } from "./types";

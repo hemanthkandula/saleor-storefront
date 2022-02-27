@@ -20,17 +20,4 @@ describe("<Money />", () => {
 
     expect(wrapper.text()).toContain("-");
   });
-
-  it("should return assigned value", () => {
-    const wrapper = mount(
-      <Money
-        money={{
-          amount: 10,
-          currency: "USD",
-        }}
-      />
-    );
-
-    expect(wrapper.text()).toContain("10");
-  });
 });

@@ -1,10 +1,9 @@
 import * as React from "react";
 
-import { MenuItem } from "@graphql/gqlTypes/MenuItem";
-
 import { NavLink } from "..";
+import { MainMenuSubItem } from "./gqlTypes/MainMenuSubItem";
 
-interface NavNestedItemProps extends MenuItem {
+interface NavNestedItemProps extends MainMenuSubItem {
   children?: NavNestedItemProps[];
   hideOverlay?(): void;
 }

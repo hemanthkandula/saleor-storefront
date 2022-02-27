@@ -1,7 +1,7 @@
 import { ApolloQueryResult, ErrorPolicy, FetchPolicy } from "apollo-client";
 import { DocumentNode } from "graphql";
 import * as React from "react";
-import { Query, QueryResult } from "react-apollo";
+import { Query, QueryProps, QueryResult } from "react-apollo";
 
 import { Error } from "../components/Error";
 import Loader from "../components/Loader";
@@ -31,7 +31,6 @@ interface TypedQueryInnerProps<TData, TVariables> {
   onCompleted?: (data: TData) => void;
 }
 
-/* eslint react/require-default-props: 0 */
 export function TypedQuery<TData, TVariables>(query: DocumentNode) {
   return (props: TypedQueryInnerProps<TData, TVariables>) => {
     const {
@@ -46,8 +45,10 @@ export function TypedQuery<TData, TVariables>(query: DocumentNode) {
       skip,
       variables,
       onCompleted,
-    } = props;
-
+    } = props as JSX.LibraryManagedAttributes<
+      QueryProps<TData, TVariables>,
+      TypedQueryInnerProps<TData, TVariables>
+    >;
     return (
       <Query
         query={query}
@@ -90,7 +91,7 @@ export function TypedQuery<TData, TVariables>(query: DocumentNode) {
           }
 
           if (hasData || (renderOnError && error) || alwaysRender) {
-            return <>{children({ ...queryData, loadMore })}</>;
+            return children({ ...queryData, loadMore });
           }
 
           return null;

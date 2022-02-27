@@ -1,9 +1,7 @@
-import "jest-styled-components";
-
-import { mount, shallow } from "enzyme";
-import React from "react";
-
 import { defaultTheme } from "@styles";
+import { mount, shallow } from "enzyme";
+import "jest-styled-components";
+import React from "react";
 
 import { Tile } from ".";
 import * as S from "./styles";

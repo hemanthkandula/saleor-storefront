@@ -1,11 +1,4 @@
-import { CompleteCheckout_checkoutComplete_order } from "@saleor/sdk/lib/mutations/gqlTypes/CompleteCheckout";
-
-import {
-  ICardData,
-  IFormError,
-  IPaymentGatewayConfig,
-  IPaymentSubmitResult,
-} from "@types";
+import { ICardData, IFormError, IPaymentGatewayConfig } from "@types";
 
 export interface IProps {
   /**
@@ -28,16 +21,6 @@ export interface IProps {
    * Method called after the form is submitted. Passed token attribute will be used to create payment.
    */
   processPayment: (token: string, cardData: ICardData) => void;
-  /**
-   * Method to call on gateway payment submission.
-   */
-  submitPayment: () => Promise<IPaymentSubmitResult>;
-  /**
-   * Method called after succesful gateway payment submission. This is the case when no confirmation is needed.
-   */
-  submitPaymentSuccess: (
-    order?: CompleteCheckout_checkoutComplete_order | null
-  ) => void;
   /**
    * Method called when gateway error occured.
    */

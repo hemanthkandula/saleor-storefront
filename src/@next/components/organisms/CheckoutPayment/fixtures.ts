@@ -1,4 +1,3 @@
-import { paymentGatewayNames } from "@temp/constants";
 import { IPaymentGateway } from "@types";
 
 export const paymentGateways: IPaymentGateway[] = [
@@ -9,7 +8,7 @@ export const paymentGateways: IPaymentGateway[] = [
         value: "false",
       },
     ],
-    id: paymentGatewayNames.dummy,
+    id: "mirumee.payments.dummy",
     name: "Dummy",
   },
   {
@@ -23,7 +22,7 @@ export const paymentGateways: IPaymentGateway[] = [
         value: "false",
       },
     ],
-    id: paymentGatewayNames.stripe,
+    id: "mirumee.payments.stripe",
     name: "Stripe",
   },
 ];

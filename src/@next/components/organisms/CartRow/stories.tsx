@@ -2,6 +2,7 @@ import { action } from "@storybook/addon-actions";
 import { storiesOf } from "@storybook/react";
 import React from "react";
 import { IntlProvider } from "react-intl";
+import { MemoryRouter } from "react-router";
 
 import { CartRow } from ".";
 import { DEFAULT_PROPS } from "./fixtures";
@@ -14,13 +15,10 @@ const STORY_PROPS = {
 
 storiesOf("@components/organisms/CartRow", module)
   .addParameters({ component: CartRow })
-  .add("responsive", () => (
+  .add("default", () => (
     <IntlProvider locale="en">
-      <CartRow {...STORY_PROPS} />
-    </IntlProvider>
-  ))
-  .add("condense", () => (
-    <IntlProvider locale="en">
-      <CartRow {...STORY_PROPS} type="condense" />
+      <MemoryRouter>
+        <CartRow {...STORY_PROPS} />
+      </MemoryRouter>
     </IntlProvider>
   ));

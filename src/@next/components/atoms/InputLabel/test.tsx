@@ -1,6 +1,5 @@
-import "jest-styled-components";
-
 import { mount, shallow } from "enzyme";
+import "jest-styled-components";
 import React from "react";
 
 import { InputLabel } from ".";
@@ -9,7 +8,7 @@ describe("<InputLabel />", () => {
   it("exists", () => {
     const wrapper = shallow(
       <InputLabel labelBackground="#FFF" active={false}>
-        This is input
+        This is input - check knobs
       </InputLabel>
     );
 

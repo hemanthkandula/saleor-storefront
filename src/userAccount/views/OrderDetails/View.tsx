@@ -1,18 +1,21 @@
-import { useAuth, useOrderDetails } from "@saleor/sdk";
-import { NextPage } from "next";
-import * as React from "react";
-
-import { Loader } from "@components/atoms";
-
-import Page from "./Page";
-import { IProps } from "./types";
-
 import "./scss/index.scss";
 
-const View: NextPage<IProps> = ({ query: { token } }) => {
+import * as React from "react";
+import { RouteComponentProps } from "react-router";
+
+import { Loader } from "@components/atoms";
+import { useAuth, useOrderDetails } from "@saleor/sdk";
+
+import Page from "./Page";
+
+const View: React.FC<RouteComponentProps<{ token?: string }>> = ({
+  match: {
+    params: { token },
+  },
+}) => {
   const { data: order, loading } = useOrderDetails(
     { token },
-    { fetchPolicy: "cache-first" }
+    { fetchPolicy: "cache-and-network" }
   );
   const { user } = useAuth();
   const guest = !user;
@@ -30,9 +33,11 @@ const View: NextPage<IProps> = ({ query: { token } }) => {
     }
   };
 
-  return loading ? (
-    <Loader />
-  ) : (
+  if (loading) {
+    return <Loader />;
+  }
+
+  return (
     <div className="order-details container">
       <Page
         guest={guest}

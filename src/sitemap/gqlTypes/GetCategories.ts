@@ -1,6 +1,5 @@
 /* tslint:disable */
 /* eslint-disable */
-// @generated
 // This file was automatically generated and should not be edited.
 
 // ====================================================
@@ -26,7 +25,6 @@ export interface GetCategories_categories_edges_node {
    */
   id: string;
   name: string;
-  slug: string;
 }
 
 export interface GetCategories_categories_edges {

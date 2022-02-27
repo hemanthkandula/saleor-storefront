@@ -1,5 +1,4 @@
 import { styled } from "@styles";
-
 import { Color, Size } from "./types";
 
 export const ButtonLink = styled.button<{

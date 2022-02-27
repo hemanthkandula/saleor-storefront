@@ -1,5 +1,5 @@
 import React from "react";
-import { FormattedMessage, useIntl } from "react-intl";
+import { useIntl, FormattedMessage } from "react-intl";
 
 import { Address, DropdownMenu, IconButton, Tile } from "@components/atoms";
 

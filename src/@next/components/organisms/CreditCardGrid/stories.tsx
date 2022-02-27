@@ -2,7 +2,6 @@ import { storiesOf } from "@storybook/react";
 import React from "react";
 
 import { CCProviders } from "@components/atoms";
-
 import { CreditCardGrid } from ".";
 
 const visa: CCProviders = "visa";

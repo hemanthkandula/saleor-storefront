@@ -7,7 +7,7 @@ export * from "./TextField";
 export * from "./Thumbnail";
 export * from "./AddressTile";
 export * from "./OverlayItem";
-export * from "./OrderTable";
+export * from "./OrderTabel";
 export * from "./AccountMenu";
 export * from "./AccountMenuMobile";
 export * from "./AccountTabTiles";

@@ -1,6 +1,5 @@
 /* tslint:disable */
 /* eslint-disable */
-// @generated
 // This file was automatically generated and should not be edited.
 
 // ====================================================
@@ -10,17 +9,14 @@
 export interface ProductVariantFields_images {
   __typename: "ProductImage";
   /**
-   * The ID of the image.
+   * The ID of the object.
    */
   id: string;
   /**
    * The URL of the image.
    */
   url: string;
-  /**
-   * The alt text of the image.
-   */
-  alt: string | null;
+  alt: string;
 }
 
 export interface ProductVariantFields_pricing_priceUndiscounted_gross {
@@ -163,6 +159,10 @@ export interface ProductVariantFields {
   id: string;
   sku: string;
   name: string;
+  /**
+   * Whether the variant is in stock and visible or not.
+   */
+  isAvailable: boolean | null;
   /**
    * Quantity of a product available for sale in one checkout.
    */

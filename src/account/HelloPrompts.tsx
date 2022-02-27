@@ -1,6 +1,6 @@
-import * as React from "react";
-
 import "./scss/helloPrompts.scss";
+
+import * as React from "react";
 
 export interface HelloPromptProps {
   name: string;

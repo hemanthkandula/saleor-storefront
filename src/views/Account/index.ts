@@ -1,2 +1,2 @@
-export * from "./Account";
-export * from "./AccountConfirmView";
+export { default as Account } from "./Account";
+export { default as AccountConfirm } from "./AccountConfirm";

@@ -1,8 +1,8 @@
 import classNames from "classnames";
-import Link from "next/link";
 import * as React from "react";
+import { Link } from "react-router-dom";
 
-import { RichTextEditorContent } from "../../@next/components/atoms";
+import { RichTextContent } from "@components/atoms";
 import { Breadcrumb, Breadcrumbs } from "../../components";
 
 interface PageNavigationElement {
@@ -16,7 +16,7 @@ interface PageProps {
   headerImage: string | null;
   navigation: PageNavigationElement[];
   page: {
-    content: any | null;
+    contentJson: any;
     title: string;
   };
 }
@@ -49,13 +49,13 @@ export const Page: React.FC<PageProps> = ({
                 })}
                 key={menuElement.url}
               >
-                <Link href={menuElement.url}>{menuElement.label}</Link>
+                <Link to={menuElement.url}>{menuElement.label}</Link>
               </li>
             ))}
           </ul>
         </div>
         <div className="article-page__content">
-          <RichTextEditorContent jsonData={page.content} />
+          <RichTextContent descriptionJson={page.contentJson} />
         </div>
       </div>
     </div>

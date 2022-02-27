@@ -1,6 +1,5 @@
-import { css } from "styled-components";
-
 import { media, styled } from "@styles";
+import { css } from "styled-components";
 
 const textProps = css`
   font-size: ${props => props.theme.typography.baseFontSize};
@@ -9,12 +8,10 @@ const textProps = css`
 `;
 
 export const Wrapper = styled.div`
-  background: ${props => props.theme.colors.light};
+  background: ${props => props.theme.colors.dark};
   padding: 2.5rem;
   text-align: center;
-  height: 26rem;
-  display: flex;
-  flex-direction: column;
+  max-height: 30rem;
   transition: 0.3s;
 
   :hover {
@@ -37,12 +34,13 @@ export const Price = styled.p`
 `;
 
 export const Image = styled.div`
-  display: flex;
-  flex-grow: 1;
-  overflow: hidden;
+  width: auto;
+  height: auto;
+  max-width: 100%;
 
   > img {
-    flex-grow: 1;
-    object-fit: contain;
+    width: auto;
+    height: auto;
+    max-width: 100%;
   }
 `;

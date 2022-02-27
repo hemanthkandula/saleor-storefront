@@ -1,16 +1,15 @@
 import { setAuthToken, useSetPassword } from "@saleor/sdk";
 import { Formik } from "formik";
-import { NextPage } from "next";
-import { useRouter } from "next/router";
 import React from "react";
-import { StringParam, useQueryParams } from "use-query-params";
 import * as Yup from "yup";
 
-import { ResetPasswordForm } from "@components/molecules";
-import { paths } from "@paths";
+import { StringParam, useQueryParams } from "use-query-params";
 
+import { BASE_URL } from "@temp/core/config";
+
+import { ResetPasswordForm } from "@components/molecules";
 import * as S from "./styles";
-import { FormikProps } from "./types";
+import { FormikProps, IProps } from "./types";
 
 const PasswordResetSchema = Yup.object().shape({
   password: Yup.string()
@@ -27,12 +26,11 @@ const initialData: FormikProps = {
   retypedPassword: "",
 };
 
-export const PasswordReset: NextPage = () => {
+export const PasswordReset: React.FC<IProps> = ({ history }: IProps) => {
   const [query] = useQueryParams({
     email: StringParam,
     token: StringParam,
   });
-  const { push } = useRouter();
 
   const [tokenError, setTokenError] = React.useState(false);
   const [passwordError, setPasswordError] = React.useState("");
@@ -42,10 +40,13 @@ export const PasswordReset: NextPage = () => {
   React.useEffect(() => {
     if (data && data.setPassword && data.setPassword.token) {
       setAuthToken(data.setPassword.token);
-      push(paths.home);
+      history.push(BASE_URL);
     }
-
-    if (graphqlErrors?.extraInfo?.userInputErrors) {
+    if (
+      graphqlErrors &&
+      graphqlErrors.extraInfo &&
+      graphqlErrors.extraInfo.userInputErrors
+    ) {
       graphqlErrors.extraInfo.userInputErrors.forEach(error => {
         if (error.field === "token") setTokenError(true);
         else setTokenError(false);
@@ -58,7 +59,7 @@ export const PasswordReset: NextPage = () => {
   const { email, token } = query;
 
   if (!email || !token) {
-    push(paths.home);
+    history.push(BASE_URL);
   }
 
   const onSubmit = (values: FormikProps) => {

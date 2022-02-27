@@ -1,15 +1,15 @@
+import "./scss/index.scss";
+
 import isEqual from "lodash/isEqual";
 import * as React from "react";
 
 import { Thumbnail } from "@components/molecules";
-import { FeaturedProduct } from "@graphql/gqlTypes/FeaturedProduct";
 
 import { TaxedMoney } from "../../@next/components/containers";
-
-import "./scss/index.scss";
+import { FeaturedProducts_shop_homepageCollection_products_edges_node } from "../ProductsFeatured/gqlTypes/FeaturedProducts";
 
 interface ProductListItemProps {
-  product: FeaturedProduct;
+  product: FeaturedProducts_shop_homepageCollection_products_edges_node;
 }
 
 const ProductListItem: React.FC<ProductListItemProps> = ({ product }) => {

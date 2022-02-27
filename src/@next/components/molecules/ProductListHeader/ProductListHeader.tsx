@@ -26,7 +26,11 @@ export const ProductListHeader: React.FC<IProps> = ({
             <Icon name="filter" size={24} />
             <S.Filters>
               <FormattedMessage {...commonMessages.filterHeader} />{" "}
-              {activeFilters > 0 && <span>({activeFilters})</span>}
+              {activeFilters > 0 && (
+                <>
+                  <span>({activeFilters})</span>
+                </>
+              )}
             </S.Filters>
           </S.FiltersButton>
           {activeFilters > 0 && (
@@ -60,7 +64,6 @@ export const ProductListHeader: React.FC<IProps> = ({
         {activeFiltersAttributes.map(
           ({ attributeSlug, valueName, valueSlug }) => (
             <Chip
-              key={valueSlug}
               onClose={() => onCloseFilterAttribute(attributeSlug, valueSlug)}
             >
               {valueName}

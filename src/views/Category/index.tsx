@@ -1,1 +1,1 @@
-export * from "./CategoryView";
+export { default as CategoryPage } from "./View";

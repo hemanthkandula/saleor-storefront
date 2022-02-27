@@ -1,48 +1,31 @@
-import "jest-styled-components";
-
 import { mount, shallow } from "enzyme";
+import "jest-styled-components";
 import React from "react";
-import renderer from "react-test-renderer";
-import { ThemeProvider } from "styled-components";
-
-import { defaultTheme } from "@styles";
 
 import { ProductDescription } from ".";
-import { attributes, descriptionJSON } from "./fixtures";
+import { attributes, description } from "./fixtures";
 import * as S from "./styles";
 
 describe("<ProductDescription />", () => {
   it("exists", () => {
     const wrapper = shallow(
-      <ProductDescription
-        attributes={attributes}
-        description={descriptionJSON}
-      />
+      <ProductDescription attributes={attributes} description={description} />
     );
 
     expect(wrapper.exists()).toEqual(true);
   });
 
-  it("renders correctly", () => {
-    const tree = renderer
-      .create(
-        <ThemeProvider theme={defaultTheme}>
-          <ProductDescription
-            attributes={attributes}
-            description={descriptionJSON}
-          />
-        </ThemeProvider>
-      )
-      .toJSON();
-    expect(tree).toMatchSnapshot();
+  it("should contain and show by default product description", () => {
+    const wrapper = shallow(
+      <ProductDescription attributes={attributes} description={description} />
+    );
+
+    expect(wrapper.text()).toContain(description);
   });
 
   it("should show product attributes when clicking on attributes tab", () => {
     const wrapper = mount(
-      <ProductDescription
-        attributes={attributes}
-        description={descriptionJSON}
-      />
+      <ProductDescription attributes={attributes} description={description} />
     );
 
     wrapper.find(S.TabTitle).at(1).simulate("click");
