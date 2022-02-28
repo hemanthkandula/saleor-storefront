@@ -17,7 +17,12 @@
   }
 
   &__image {
-    width: 300px;
+
+    text-align: center;
+    &__img {
+      width: 300px;
+
+    }
   }
   &__product {
     display: flex;
@@ -164,6 +169,7 @@
 
       &--fixed {
         top: 0;
+        left: 0;
         position: sticky;
         width: auto;
         margin: 0 auto;
@@ -223,7 +229,23 @@
       display: flex;
       margin-top: $spacer;
       min-height: $spacer;
-      margin-bottom: $spacer * 0.5;
+      margin-bottom: $spacer * 2;
+
+
+      &_reg {
+
+        font-family: CardinalFruitMedium, serif;
+        //font-weight: 900;
+        font-size: $large-font-size;
+
+
+      }
+
+      &_italic{
+        font-family: CardinalFruitMediumItalic, serif;
+        //font-weight: 900;
+        font-size: $large-font-size;
+      }
 
       &__divider {
         margin-top: $spacer*2 ;

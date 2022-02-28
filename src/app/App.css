@@ -7,3 +7,15 @@
     font-family: 'CardinalFruitItalic';
     src: url('../assets/fonts/CardinalFruit/CardinalFruit-Italic.otf') format('opentype');
 }
+
+
+@font-face {
+    font-family: 'CardinalFruitMedium';
+    src: url('../assets/fonts/CardinalFruit/CardinalFruit-Medium.otf') format('opentype');
+}
+
+@font-face {
+    font-family: 'CardinalFruitMediumItalic';
+    src: url('../assets/fonts/CardinalFruit/CardinalFruit-MediumItalic.otf') format('opentype');
+}
+

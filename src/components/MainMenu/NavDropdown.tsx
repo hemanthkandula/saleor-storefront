@@ -40,7 +40,7 @@ class NavDropdown extends React.PureComponent<
   };
 
   render() {
-    const { children } = this.props;
+    // const { children } = this.props;
     const { active } = this.state;
     const showDropDown = active && this.hasSubNavigation;
 
@@ -54,24 +54,24 @@ class NavDropdown extends React.PureComponent<
         onMouseLeave={this.hideOverlayHandler}
       >
         <li>
-          <NavLink item={this.props} onClick={this.hideOverlayHandler} />
+          <NavItem {...this.props} />
         </li>
-        <li
-          className={classNames({
-            "main-menu__nav-dropdown__body": true,
-            "main-menu__nav-dropdown__body--visible": showDropDown,
-          })}
-        >
-          <ul>
-            {children.map((subItem, i) => (
-              <NavItem
-                key={i}
-                hideOverlay={this.hideOverlayHandler}
-                {...subItem}
-              />
-            ))}
-          </ul>
-        </li>
+        {/*<li*/}
+        {/*  className={classNames({*/}
+        {/*    "main-menu__nav-dropdown__body": true,*/}
+        {/*    "main-menu__nav-dropdown__body--visible": showDropDown,*/}
+        {/*  })}*/}
+        {/*>*/}
+        {/*  <ul>*/}
+        {/*    {children.map((subItem, i) => (*/}
+        {/*      <NavItem*/}
+        {/*        key={i}*/}
+        {/*        hideOverlay={this.hideOverlayHandler}*/}
+        {/*        {...subItem}*/}
+        {/*      />*/}
+        {/*    ))}*/}
+        {/*  </ul>*/}
+        {/*</li>*/}
       </ul>
     );
   }

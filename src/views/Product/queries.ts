@@ -1,4 +1,5 @@
 import gql from "graphql-tag";
+
 import { TypedQuery } from "../../core/queries";
 import {
   ProductDetails,
@@ -67,6 +68,32 @@ export const selectedAttributeFragment = gql`
     values {
       id
       name
+    }
+  }
+`;
+export const FeatureProductFragment = gql`
+  fragment FeatureProductFragment on Product {
+    id
+    name
+    descriptionJson
+    thumbnail {
+      url
+      alt
+    }
+    thumbnail2x: thumbnail(size: 510) {
+      url
+    }
+    attributes {
+      attribute {
+        id
+        name
+        slug
+      }
+      values {
+        id
+        name
+        value: name
+      }
     }
   }
 `;

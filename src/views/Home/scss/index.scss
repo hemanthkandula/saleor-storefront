@@ -65,6 +65,7 @@
         font-family: Helvetica Neue, Medium, serif;
         //font-weight: 900;
         //font-size: $large-font-size;
+        text-align: center;
 
 
       }
@@ -164,11 +165,145 @@
   }
   &__categories {
     margin-bottom: 2rem;
+    text-align: center;
+    height: 100vh;
+    width: 100%;
+&__content {
+  flex-grow: 1;
+  width: 100%;
+  position: relative;
 
+  &--fixed {
+    top: 0;
+    position: sticky;
+    width: auto;
+    margin: 0 auto;
+    @media (min-width: $container-width) {
+      width: calc(#{$container-width} * 90 / 100);
+    }
+  }
+}
+    &__titles {
+      //position: relative;
+
+      text-align: center;
+      margin:0 auto;
+      padding-top: 5rem;
+      padding-bottom: 5rem;
+      //margin-left: 6rem;
+      overflow-wrap: break-word;
+
+      align-items: center;
+      justify-content: center;
+      span {
+
+      //margin-top: 8rem;
+        line-height: $h1-font-size;
+      }
+      &_reg {
+        font-family: CardinalFruitRegular, serif;
+        //font-weight: 900;
+        font-size: $h1-font-size;
+        margin-right: 4rem;
+      }
+      &_italic {
+        font-family: CardinalFruitItalic, serif;
+        //font-weight: 900;
+        font-size: $h1-font-size;
+        margin-right: 4rem;
+
+      }
+
+
+      ol,
+      ul {
+        list-style: none;
+      }
+
+      li {
+        display: inline-block;
+        padding: 20px 0 20px;
+      }
+
+      a {
+        text-decoration: none;
+        position: relative;
+        display: block;
+        padding: 16px 0;
+        margin: 0 12px;
+        transition: color 0.1s, background-color 0.1s;
+        color: #ffffff;
+      }
+      a:hover {
+        color: $lv_grey;
+      }
+      a:focus, a:active {
+        color: $lv_grey;
+      }
+
+      a::before {
+        content: '';
+        display: block;
+        position: absolute;
+        top: 100%;
+        height: 3px;
+        width: 100%;
+        background-color: $lv_grey;
+        -webkit-transform-origin: center top;
+        transform-origin: center top;
+        -webkit-transform: scale(0, 1);
+        transform: scale(0, 1);
+        transition: color 0.1s, -webkit-transform 0.2s ease-out;
+        transition: color 0.1s, transform 0.2s ease-out;
+        transition: color 0.1s, transform 0.2s ease-out, -webkit-transform 0.2s ease-out;
+      }
+
+      a:active::before {
+        background-color: $lv_grey;
+      }
+
+      a:hover::before,
+      a:focus::before {
+        -webkit-transform-origin: center top;
+        transform-origin: center top;
+        -webkit-transform: scale(1, 1);
+        transform: scale(1, 1);
+      }
+
+
+
+
+
+
+    }
     h3 {
       text-transform: uppercase;
       font-weight: $bold-font-weight;
       margin-bottom: 1rem;
+    }
+
+    &__center {
+      text-align: center;
+      &__circle {
+        background: $black;
+        width: 500px;
+        height: 500px;
+        border-radius: 50%;
+         position: relative;
+        margin: 0 auto;
+        text-align: center;
+        img {
+          top: 50%;
+          transform: translateY(-50%);
+          position: relative;
+
+          width: 200px;
+
+
+
+        }
+
+      }
     }
 
     &__list {
@@ -219,6 +354,57 @@
           background-repeat: no-repeat;
           background-size: contain;
         }
+      }
+    }
+  }
+
+  &__quiz {
+    margin-bottom: 2rem;
+    text-align: center;
+    height: 100vh;
+    width: 100%;
+    padding-top: 5rem;
+    p {
+      line-height: 10rem;
+
+    }
+    &__text {
+      //overflow: hidden;
+      padding-top: $spacer * 4;
+      //margin-bottom: $spacer * 4;
+      p {
+        line-height: 20rem;
+
+      }
+
+      //overflow: hidden;
+
+      margin-bottom: $spacer * 4;
+      &_med {
+        font-family: CardinalFruitMedium, serif;
+        //font-weight: 900;
+        font-size: $large-font-size;
+
+
+      }
+
+      &_meditalic{
+        font-family: CardinalFruitMediumItalic, serif;
+        //font-weight: 900;
+        font-size: $large-font-size;
+      }
+    }
+
+    &__button{
+      //text-transform: $product-item-title-text-transform;
+      text-align: center;
+      font-family: CardinalFruitRegular, serif;
+      font-size: $h3-font-size;
+
+
+      span {
+        color: $white;
+
       }
     }
   }

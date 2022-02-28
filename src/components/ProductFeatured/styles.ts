@@ -38,10 +38,34 @@ export const AttributeName = styled.span`
   width: 48px;
   height: 23px;
   text-align: left;
-  font-family: Helvetica Neue;
+  font-family: CardinalFruitMedium, serif;
   font-style: normal;
   font-weight: normal;
-  font-size: 15px;
+  font-size: ${props => props.theme.typography.h2FontSize};
+  color: ${props => props.theme.colors.white};
+`;
+
+export const AttributeBrand = styled.span`
+  color: ${props => props.theme.colors.listAttributeName};
+  margin: 0;
+  padding: 0;
+  width: 48px;
+  height: 23px;
+  text-align: left;
+  font-family: CardinalFruitMediumItalic, serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: ${props => props.theme.typography.h2FontSize};
+  color: ${props => props.theme.colors.white};
+`;
+
+export const AttributeButton = styled.span`
+  color: ${props => props.theme.colors.listAttributeName};
+  font-family: HelveticaNeue Medium, serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: ${props => props.theme.typography.h4FontSize};
+  margin-right: ${props => props.theme.spacing.gutter};
   color: ${props => props.theme.colors.white};
 `;
 
@@ -54,9 +78,9 @@ export const AttributeValue = styled.span`
   width: 286px;
   height: 23.788545608520508px;
   line-height: 19px;
-  font-family: Helvetica Neue, serif;
+  font-family: HelveticaNeue Light, serif;
   font-style: normal;
   font-weight: normal;
   font-size: 15px;
-  color: ${props => props.theme.colors.lv_grey};
+  color: ${props => props.theme.colors.white};
 `;

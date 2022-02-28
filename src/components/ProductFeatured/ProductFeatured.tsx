@@ -1,14 +1,16 @@
 // import divider from "../../../../images/divider.svg";
-import { Button, Grid, makeStyles, Theme, withStyles } from "@material-ui/core";
+import { Button, Grid, Theme, withStyles } from "@material-ui/core";
 import { purple } from "@material-ui/core/colors";
+import NavigateNextIcon from "@material-ui/icons/NavigateNext";
 import classNames from "classnames";
+import { sanitize } from "dompurify";
+import draftToHtml from "draftjs-to-html";
 import React from "react";
+import { Link } from "react-router-dom";
 
-import { maybe } from "@temp/core/utils";
-import NewGalleryCarousel from "@temp/views/Product/NewGalleryCarousel";
+import { generateProductUrl, maybe } from "@temp/core/utils";
 
-import featureimage from "../../images/featured_image.png";
-import { TypedFeaturedProductsQuery } from "./queries";
+import { TypedFeaturedProductQuery } from "./queries";
 import * as S from "./styles";
 
 import "./scss/index.scss";
@@ -16,7 +18,6 @@ import "./scss/index.scss";
 interface ProductsFeaturedProps {
   title?: string;
 }
-
 
 const MainButton = withStyles((theme: Theme) => ({
   root: {
@@ -28,7 +29,10 @@ const MainButton = withStyles((theme: Theme) => ({
     fontFamily: "Helvetica Neue",
     borderRadius: 0,
     textTransform: "none",
-    padding: "1rem 4rem",
+    paddingRight: "1rem",
+    paddingLeft: "2rem",
+    paddingTop: "1rem",
+    paddingBottom: "1rem",
     fontSize: "small",
     marginTop: "5rem",
   },
@@ -36,7 +40,7 @@ const MainButton = withStyles((theme: Theme) => ({
 
 export const ProductFeatured: React.FC<ProductsFeaturedProps> = ({ title }) => {
   return (
-    <TypedFeaturedProductsQuery displayError={false}>
+    <TypedFeaturedProductQuery displayError={false}>
       {({ data }) => {
         const products = maybe(
           () => data.shop.homepageCollection.products.edges,
@@ -54,16 +58,22 @@ export const ProductFeatured: React.FC<ProductsFeaturedProps> = ({ title }) => {
                 alignItems="center"
               >
                 <Grid item xs={12} sm={4} lg={4}>
-                  {/* <div className="product-featured__product__info"> */}
-                  {/*  <div className={classNames("product-featured__product__info--fixed")}> */}
-
-                  {/*  </div> */}
-                  {/* </div> */}
+                  <div className="product-featured__product__info">
+                    <div
+                      className={classNames(
+                        "product-featured__product__info--fixed"
+                      )}
+                    >
+                      <S.AttributeName>Sentale </S.AttributeName>
+                      <S.AttributeBrand>of the </S.AttributeBrand>
+                      <S.AttributeName>week</S.AttributeName>
+                    </div>
+                  </div>
                 </Grid>
                 <Grid item xs={12} sm={4} lg={4}>
-                  <div id="exampleContent">
+                  <div className="product-featured__image">
                     <img
-                      className="product-featured__image"
+                      className="product-featured__image__img"
                       src={products[0].node.thumbnail.url}
                       alt=""
                     />
@@ -78,20 +88,58 @@ export const ProductFeatured: React.FC<ProductsFeaturedProps> = ({ title }) => {
                     >
                       <div>
                         <p className="product-featured__product__attrlist">
-                          <S.AttributeName> Product Name </S.AttributeName>{" "}
+                          <S.AttributeName>
+                            {products[0].node.name}
+                          </S.AttributeName>
+                          <S.AttributeBrand>
+                            {/* {products[0].node.attributes. */}
+                            {/*  // .filter(_attr => _attr.attribute.name.includes("Brand")) */}
+                            {/*  .map((attribute, index) => ( */}
+                            {/*    <a key={index}> */}
+                            {/*      /!* <S.AttributeName>{attribute.attribute.name}: </S.AttributeName>{" "} *!/ */}
+                            {/*      <S.AttributeName> */}
+                            {/*        {attribute.values.map(value => value.name).join(", ")} */}
+                            {/*      </S.AttributeName> */}
+                            {/*    </a> */}
+                            {/*  ))} */}
+                          </S.AttributeBrand>
                         </p>
                         <p>
-                          <S.AttributeValue>Descriptioon</S.AttributeValue>
+                          <S.AttributeValue>
+                            {/* {products[0].node.descriptionJson} */}
+                            {products[0].node.descriptionJson && (
+                              <div
+                                dangerouslySetInnerHTML={{
+                                  __html: sanitize(
+                                    draftToHtml(
+                                      JSON.parse(
+                                        products[0].node.descriptionJson
+                                      )
+                                    )
+                                  ),
+                                }}
+                              />
+                            )}
+                          </S.AttributeValue>
                         </p>
-
-                        <MainButton
-                          variant="outlined"
-                          size="large"
-                          color="inherit"
-                          className="home-page__hero__center_button"
+                        <Link
+                          to={generateProductUrl(
+                            products[0].node.id,
+                            products[0].node.name
+                          )}
                         >
-                          Our Philosophy
-                        </MainButton>
+                          <MainButton
+                            variant="outlined"
+                            size="large"
+                            color="inherit"
+                            className="home-page__hero__center_button"
+                            endIcon={<NavigateNextIcon />}
+                          >
+                            <S.AttributeButton>
+                              Discover the fragrance
+                            </S.AttributeButton>
+                          </MainButton>
+                        </Link>
                       </div>
                     </div>
                   </div>
@@ -102,6 +150,6 @@ export const ProductFeatured: React.FC<ProductsFeaturedProps> = ({ title }) => {
         }
         return null;
       }}
-    </TypedFeaturedProductsQuery>
+    </TypedFeaturedProductQuery>
   );
 };

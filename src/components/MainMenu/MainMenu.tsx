@@ -101,7 +101,9 @@ const MainMenu: React.FC = () => {
                             className="main-menu__item"
                             key={item.id}
                           >
-                            <NavDropdown overlay={overlayContext} {...item} />
+                            <ul className="main-menu__nav-dropdown">
+                              <Link to={item.url}>{item.name}</Link>
+                            </ul>
                           </li>
                         ))
                       }
